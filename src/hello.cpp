@@ -13,4 +13,13 @@ int main()
         cout << word << " ";
     }
     cout << endl;
+
+    int a{10};
+    int *a_ptr = &a;
+
+    cout<< a << "\n";
+    cout<< a_ptr << "\n";
+    cout<< *a_ptr << "\n";
+
+
 }
