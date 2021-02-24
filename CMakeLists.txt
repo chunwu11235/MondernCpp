@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(Hello VERSION 0.1.0)
+project(ModernCpp VERSION 0.1.0)
 
 include(CTest)
 enable_testing()
@@ -17,6 +17,6 @@ src/my_lib.h
 src/my_lib.cpp
 )
 
-add_executable(Hello ${SOURCES})
+add_executable(ModernCpp ${SOURCES})
 
 
