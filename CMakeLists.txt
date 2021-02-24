@@ -11,12 +11,15 @@ include(CPack)
 
 include_directories(src)
 
-set(SOURCES 
-main.cpp 
+set(my_lib
 src/my_lib.h
 src/my_lib.cpp
 )
 
-add_executable(ModernCpp ${SOURCES})
+add_executable(ModernCpp 
+main.cpp
+${my_lib})
 
-
+add_executable(Playground 
+playground.cpp
+${my_lib})
