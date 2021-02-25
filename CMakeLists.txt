@@ -20,8 +20,10 @@ src/my_lib.cpp
 
 add_executable(ModernCpp 
 main.cpp
-${my_lib})
+${my_lib}
+)
 
 add_executable(Playground 
 playground.cpp
-${my_lib})
+${my_lib}
+)
