@@ -9,9 +9,10 @@ using namespace std;
 // void play_with_pointers();
 
 int main(int, char**) {
-    cout << "Hello, world!\n";
-    printf("My addition: 1 + 2 = %d\n", my_add(1, 2) );
+    
+    // play_with_pointers();
+    // play_with_reference();
 
-    play_with_pointers();
+    pass_function_arguments();
 
 }

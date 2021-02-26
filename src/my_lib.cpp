@@ -29,9 +29,6 @@ void Factorial(int *a, int *result) {
     *result = ans;
 }
 
-
-
-
 void play_with_pointers() {
     // uniform initialization'
     int a{10};
@@ -93,4 +90,44 @@ void play_with_pointers() {
 
 
     cout << "\n";
+}
+void play_with_reference() {
+    int x = 10;
+    int &x_ref = x;
+
+    // int &ref = 10; // not allow, must bind to a variable not a literal
+    cout << &x << "\t" << &x_ref; // same address, x and x_ref are identifiers
+
+    cout << "\n";
+}
+
+
+void pass_function_arguments() {
+
+    // local function
+    int *ptr = new int{10};
+    cout << ptr << "\t" << &ptr << "\t" << *ptr;
+    
+    // c++ doesn't support local function
+    // we need to use the lambda feature in modern c++ (11/14/17)
+    auto local_function = [] (int *ptr_local) {
+        // the values of ptr and ptr_local are the same
+        // but the addresses are not, ptr_local and ptr are two different variables!
+        // pass by value in this case
+        cout << ptr_local << " address of the local ptr: " << &ptr_local 
+            << "\t" << *ptr_local << "\n";
+
+        int *&ptr_local_ref = ptr_local;
+        ptr_local_ref = new int{10000}; // ptr_local now point to 10000;
+
+        // we have changed the value of ptr_loca
+        cout << "this has changed " << ptr_local << " address of the local ptr: " << &ptr_local
+            << "\t" << *ptr_local << "\n";
+
+    };
+
+    local_function(ptr);       
+    // nothign has changed for ptr
+    cout << ptr << "\t" << &ptr << "\t" << *ptr;
+    cout <<"\n";
 }

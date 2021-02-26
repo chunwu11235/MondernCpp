@@ -11,5 +11,8 @@ void Swap(int *a, int *b);
 void Factorial(int *a, int *result);
 
 void play_with_pointers();
+void play_with_reference();
+
+void pass_function_arguments();
 
 #endif
