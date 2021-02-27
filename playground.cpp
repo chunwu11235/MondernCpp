@@ -10,9 +10,11 @@ using namespace std;
 
 int main(int, char**) {
     
+    play_with_auto();
     // play_with_pointers();
     // play_with_reference();
     // pass_function_arguments();
-    play_with_const();
+    // play_with_const();
+
 
 }

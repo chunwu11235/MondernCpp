@@ -129,7 +129,6 @@ void pass_function_arguments() {
     cout << ptr << "\t" << &ptr << "\t" << *ptr;
     cout <<"\n";
 }
-
 void play_with_const() {
 
     // ref to const 
@@ -181,4 +180,35 @@ void play_with_const() {
     int *const ptr2 = &x;
     const int *const &p_ref2 = ptr2; // attention!   
 }
+void play_with_auto() {
+    int a = 10;
+    const int const_a = 12;
+    auto ref = a;
+    auto ref_const = const_a; // b is a copy of const_a
+
+    // auto is conservative
+    auto ptr = &a;
+    const auto ptr2 = &const_a;
+    auto w = &ptr2;
+
+    auto list = {"12", };
+
+    int arr[] = {1,2,3,4};
+    for(const auto &i : arr) {
+        cout << i;
+        // i = 100; not allow
+    }
+    cout << "\n";
+
+    for(auto &i : arr) {
+        cout << i;
+        i *= 2;
+    }
+    // check arr, now is {2,4,6,8}
+
+    
+    cout << "\n";
+
+}
+
 

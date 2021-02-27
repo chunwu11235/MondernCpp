@@ -15,5 +15,5 @@ void play_with_reference();
 
 void pass_function_arguments();
 void play_with_const();
-
+void play_with_auto();
 #endif
