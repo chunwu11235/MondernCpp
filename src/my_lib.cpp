@@ -100,8 +100,6 @@ void play_with_reference() {
 
     cout << "\n";
 }
-
-
 void pass_function_arguments() {
 
     // local function
@@ -131,3 +129,56 @@ void pass_function_arguments() {
     cout << ptr << "\t" << &ptr << "\t" << *ptr;
     cout <<"\n";
 }
+
+void play_with_const() {
+
+    // ref to const 
+    const int n = 10;
+    int n2 = n; // this is OK, copy value
+    const int &ref_to_const = n;
+    // int &ref = n; // not allow
+    
+    int num = 10;
+    int *ptr = &num;
+    cout << ptr << "\t" << &ptr << "\t" << *ptr << "\n"; 
+    
+    // what is the difference?
+    const int *ptr_to_const = ptr; // pointer to a const int
+    *ptr = 100; // allow
+    // *ptr_to_const = 1000; // not allow
+    
+    cout << ptr << "\t" << &ptr << "\t" << *ptr << "\n"; 
+    cout << ptr_to_const << "\t" << &ptr_to_const << "\t" << *ptr_to_const << "\n"; 
+
+    ptr_to_const = new int{123}; // ptr_to_const itself is not const, it is the stuff it points to a const.
+    cout << ptr_to_const << "\t" << &ptr_to_const << "\t" << *ptr_to_const << "\n"; 
+    
+
+    int const *ptr_to_const2 = ptr; // the same as ptr_to_const
+    cout << ptr_to_const2 << "\t" << &ptr_to_const2 << "\t" << *ptr_to_const2 << "\n"; 
+    // *ptr_to_const2 = 13; // not allow
+    ptr_to_const2 = new int{321}; // allow
+    cout << ptr_to_const2 << "\t" << &ptr_to_const2 << "\t" << *ptr_to_const2 << "\n"; 
+    
+    
+    // const pointer
+    const int const_int = 2;
+    // int *const const_ptr = &const_int; // not allow
+    int *const const_ptr = ptr; // const pointer to int
+    *const_ptr = 1231; // OK
+
+    // const_ptr = &const_int; // not allow
+    const int *const const_ptr_to_const =  &const_int; // OK
+
+    cout << ptr << "\t" << &ptr << "\t" << *ptr << "\n"; 
+    cout << const_ptr << "\t" << &const_ptr << "\t" << *const_ptr << "\n"; 
+
+    // mix all
+    int x = 5 ;
+    const int *ptr1 = &x ;
+    const int *&p_ref1 = ptr1 ;
+
+    int *const ptr2 = &x;
+    const int *const &p_ref2 = ptr2; // attention!   
+}
+

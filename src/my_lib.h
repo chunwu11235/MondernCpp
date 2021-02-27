@@ -14,5 +14,6 @@ void play_with_pointers();
 void play_with_reference();
 
 void pass_function_arguments();
+void play_with_const();
 
 #endif

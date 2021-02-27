@@ -12,7 +12,7 @@ int main(int, char**) {
     
     // play_with_pointers();
     // play_with_reference();
-
-    pass_function_arguments();
+    // pass_function_arguments();
+    play_with_const();
 
 }
