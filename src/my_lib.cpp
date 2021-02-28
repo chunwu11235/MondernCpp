@@ -191,8 +191,10 @@ void play_with_auto() {
     const auto ptr2 = &const_a;
     auto w = &ptr2;
 
-    auto list = {"12", };
+    auto list = {"12", }; // initialization list
+    // auto list{"123","12"}; // can only take one element in this way
 
+    // use with range-based for loop
     int arr[] = {1,2,3,4};
     for(const auto &i : arr) {
         cout << i;
@@ -204,11 +206,37 @@ void play_with_auto() {
         cout << i;
         i *= 2;
     }
-    // check arr, now is {2,4,6,8}
-
-    
     cout << "\n";
 
+    // check arr, now is {2,4,6,8}
+    // how it works internally?
+    auto &&range = {1,2,3,4};
+    auto b = begin(arr);
+    auto e = end(arr);
+    for(;b != e; b++) {
+        auto temp = *b;
+        cout << *b << "\t";
+    }
+    cout << "\n";
+
+    for(auto i : {1,3,5,7}) {
+        cout << i << "\t";
+    }
+    cout << "\n";
+
+    // for loop with pointer and containers
+    for(auto cur = begin(arr); cur != end(arr); cur++) {
+        *cur *= 100; 
+        cout << *cur << "\t";
+    }
+
+    cout << "\n";
+    for(const int* cur = begin(arr); cur != end(arr); cur++) {
+        // *cur *= 100; 
+        cout << *cur << "\t";
+    }
+
+    cout << "\n";
 }
 
 
