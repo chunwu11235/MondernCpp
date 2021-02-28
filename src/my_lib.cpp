@@ -240,3 +240,29 @@ void play_with_auto() {
 }
 
 
+void function_overloading(int a) {
+    cout << "for int" << "\n";
+}
+
+void function_overloading(double a) {
+    cout << "for double" << "\n";
+}
+
+void overload_ref(const int &a) {
+    cout << "for ref to const int" << "\n";
+}
+
+void overload_ref(int &a) {
+    cout << "for ref to int" << "\n";
+}
+
+void play_with_overloading() {
+    function_overloading(10);
+    function_overloading(10.0);
+    int a = 10;
+    int &ref = a;
+    const int &ref_to_const = a;
+    overload_ref(ref);
+    overload_ref(ref_to_const);
+}
+
