@@ -3,30 +3,52 @@
 
 using namespace std;
 
-int my_add(int a, int b) {
-    return a + b;
+using namespace My_Function;
+namespace My_Function{
+    void function_overloading(int a) {
+        cout << "for int" << "\n";
+    }
+
+    void function_overloading(double a) {
+        cout << "for double" << "\n";
+    }
+
+    void overload_ref(const int &a) {
+        cout << "for ref to const int" << "\n";
+    }
+
+    void overload_ref(int &a) {
+        cout << "for ref to int" << "\n";
+    }
 }
 
-int Add(const int *a, const int *b) {
+
+
+int Assignment::Add(const int *a, const int *b) {
     return *a + *b;
 }
 
-void AddVal(const int *a, const int *b, int *result) {
+void Assignment::AddVal(const int *a, const int *b, int *result) {
     *result = *a + *b;
 }
 
-void Swap(int *a, int *b) {
+void Assignment::Swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-void Factorial(int *a, int *result) {
+void Assignment::Factorial(int *a, int *result) {
     int ans = 1;
     for(;*a > 1; *a -= 1) {
         ans *= *a;
     }
     *result = ans;
+}
+
+
+int my_add(int a, int b) {
+    return a + b;
 }
 
 void play_with_pointers() {
@@ -61,7 +83,7 @@ void play_with_pointers() {
     // void pointer
     void *ptr = &a;
     char *c_ptr = new char{'c'};
-    cout << (void * ) &c_ptr << "\t" << *c_ptr << endl; // void * to print the address of char ptr
+    cout << (void * ) &c_ptr << "\t" << *c_ptr << "\n"; // void * to print the address of char ptr
 
     // ptr of a ptr
     // ptr is a object that holds the address of another object
@@ -239,24 +261,8 @@ void play_with_auto() {
     cout << "\n";
 }
 
-
-void function_overloading(int a) {
-    cout << "for int" << "\n";
-}
-
-void function_overloading(double a) {
-    cout << "for double" << "\n";
-}
-
-void overload_ref(const int &a) {
-    cout << "for ref to const int" << "\n";
-}
-
-void overload_ref(int &a) {
-    cout << "for ref to int" << "\n";
-}
-
 void play_with_overloading() {
+    function_overloading();
     function_overloading(10);
     function_overloading(10.0);
     int a = 10;

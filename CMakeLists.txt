@@ -12,9 +12,10 @@ include(CPack)
 
 
 include_directories(src)
+include_directories(header)
 
 set(my_lib
-src/my_lib.h
+header/my_lib.h
 src/my_lib.cpp
 )
 

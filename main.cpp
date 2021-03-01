@@ -3,6 +3,7 @@
 #include "stdio.h"
 
 using namespace std;
+using namespace Assignment;
 
 
 int main(int, char**) {

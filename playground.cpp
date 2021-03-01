@@ -3,8 +3,7 @@
 #include "stdio.h"
 #include "string"
 
-
-using namespace std;
+// using namespace My_Function;
 
 int main(int, char**) {
 
