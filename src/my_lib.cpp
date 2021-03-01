@@ -84,6 +84,8 @@ void play_with_pointers() {
     void *ptr = &a;
     char *c_ptr = new char{'c'};
     cout << (void * ) &c_ptr << "\t" << *c_ptr << "\n"; // void * to print the address of char ptr
+    delete c_ptr;
+    c_ptr = nullptr;
 
     // ptr of a ptr
     // ptr is a object that holds the address of another object
@@ -139,6 +141,8 @@ void pass_function_arguments() {
 
         int *&ptr_local_ref = ptr_local;
         ptr_local_ref = new int{10000}; // ptr_local now point to 10000;
+        delete ptr_local_ref;
+        ptr_local_ref = nullptr;
 
         // we have changed the value of ptr_loca
         cout << "this has changed " << ptr_local << " address of the local ptr: " << &ptr_local
@@ -150,6 +154,9 @@ void pass_function_arguments() {
     // nothign has changed for ptr
     cout << ptr << "\t" << &ptr << "\t" << *ptr;
     cout <<"\n";
+
+    delete ptr;
+    ptr = nullptr;
 }
 void play_with_const() {
 
@@ -173,14 +180,16 @@ void play_with_const() {
 
     ptr_to_const = new int{123}; // ptr_to_const itself is not const, it is the stuff it points to a const.
     cout << ptr_to_const << "\t" << &ptr_to_const << "\t" << *ptr_to_const << "\n"; 
-    
+    delete ptr_to_const;
+    ptr_to_const = nullptr;
 
     int const *ptr_to_const2 = ptr; // the same as ptr_to_const
     cout << ptr_to_const2 << "\t" << &ptr_to_const2 << "\t" << *ptr_to_const2 << "\n"; 
     // *ptr_to_const2 = 13; // not allow
     ptr_to_const2 = new int{321}; // allow
     cout << ptr_to_const2 << "\t" << &ptr_to_const2 << "\t" << *ptr_to_const2 << "\n"; 
-    
+    delete ptr_to_const2;
+    ptr_to_const2 = nullptr;
     
     // const pointer
     const int const_int = 2;
