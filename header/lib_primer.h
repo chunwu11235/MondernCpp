@@ -4,6 +4,7 @@
 
 void use_auto();
 void use_decltype();
+void use_function_ptr();
 
 
 

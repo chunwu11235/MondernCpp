@@ -11,7 +11,8 @@ using namespace std;
 void assignment1();
 
 int main(int, char**) {
-    assignment1();
+    // assignment1();
+    use_function_ptr();
 }
 
 void assignment1() {

@@ -25,7 +25,7 @@ src/lib_memory.cpp)
 
 set(lib_primer
 header/lib_primer.h
-src/lib_memory.cpp)
+src/lib_primer.cpp)
 
 add_executable(ModernCpp 
 main.cpp
