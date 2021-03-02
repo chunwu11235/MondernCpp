@@ -3,6 +3,8 @@
 #define MY_LIB_H
 
 
+void play_with_memory();
+
 
 
 

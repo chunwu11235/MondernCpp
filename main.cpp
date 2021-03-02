@@ -1,7 +1,10 @@
 #include <iostream>
-#include "lib_101.h"
+
 #include "stdio.h"
 #include "stdlib.h"
+
+#include "lib_primer.h"
+#include "lib_101.h"
 
 using namespace std;
 
@@ -10,7 +13,6 @@ void assignment1();
 int main(int, char**) {
     assignment1();
 }
-
 
 void assignment1() {
     using namespace Assignment;

@@ -23,9 +23,14 @@ set(lib_memory
 header/lib_memory.h
 src/lib_memory.cpp)
 
+set(lib_primer
+header/lib_primer.h
+src/lib_memory.cpp)
+
 add_executable(ModernCpp 
 main.cpp
 ${lib_101}
+${lib_primer}
 )
 
 add_executable(Playground 
