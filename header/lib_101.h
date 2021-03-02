@@ -1,6 +1,6 @@
 #pragma once
-#ifndef MY_LIB_H
-#define MY_LIB_H
+#ifndef LIB_101_H
+#define LIB_101_H
 
 int my_add(int a, int b);
 
