@@ -1,12 +1,21 @@
 #include <iostream>
-#include "my_lib.h"
+
 #include "stdio.h"
+#include "stdlib.h"
+
+#include "lib_primer.h"
+#include "lib_101.h"
 
 using namespace std;
-using namespace Assignment;
 
+void assignment1();
 
 int main(int, char**) {
+    assignment1();
+}
+
+void assignment1() {
+    using namespace Assignment;
     cout << "Hello, world!\n";
 
     int *a = new int{1};
@@ -23,7 +32,18 @@ int main(int, char**) {
     Swap(a, b);
     cout<< *a << *b << "\n";
 
-    Factorial(new int{5}, b);
+    Factorial(a, b);
     cout << *b << "\n";
 
+
+    cout << *a << "\n";
+    cout << *b << "\n";
+
+    // after deleting, we might still be able to access the object 
+    // the behavior is undefined. The purpose of deleting is to tell
+    // the memory manager that these addresses are free to be re-allocat
+    delete a;
+    delete b;
+    a = nullptr;
+    b = nullptr;
 }

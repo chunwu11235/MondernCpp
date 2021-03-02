@@ -14,17 +14,27 @@ include(CPack)
 include_directories(src)
 include_directories(header)
 
-set(my_lib
-header/my_lib.h
-src/my_lib.cpp
+set(lib_101
+header/lib_101.h
+src/lib_101.cpp
 )
+
+set(lib_memory
+header/lib_memory.h
+src/lib_memory.cpp)
+
+set(lib_primer
+header/lib_primer.h
+src/lib_memory.cpp)
 
 add_executable(ModernCpp 
 main.cpp
-${my_lib}
+${lib_101}
+${lib_primer}
 )
 
 add_executable(Playground 
 playground.cpp
-${my_lib}
+${lib_101}
+${lib_memory}
 )
