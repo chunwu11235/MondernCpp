@@ -46,8 +46,21 @@ int add(int a, int b) {
     return a + b;
 }
 
-int mutiply(int a, int b) {
+int multiply(int a, int b) {
     return a*b;
+}
+
+int apply1(int a, int b, int (*fp)(int, int)) {
+    cout << "func ptr as argument" << "\n";
+    return (*fp)(a, b);
+}
+
+// apply1 and apply2 are the same to compliers
+// function will automatically be converted to funciton ptr
+int apply2(int a, int b, int f(int, int)) {
+    cout << "func as argument" << "\n";
+    auto fp = f; // fp is actually a ptr to function! 
+    return f(a, b);
 }
 
 void use_function_ptr() {
@@ -71,13 +84,19 @@ void use_function_ptr() {
     // vector<decltype(&add)> v; // same usage
     vector<decltype(pf)> v;
     v.push_back(add);
-    v.push_back(mutiply);
+    v.push_back(multiply);
 
     for( const auto &f : v) {
         cout << f(2,3) << "\t";
     }
+    cout << "\n";
 
-    // todo:  write a function that takes a function ptr as an argument
+    // functions that take functions as an argument
+    cout << apply1(4, 5, &add) << " should be 9" << "\n";
+    cout << apply1(4, 5, add) << " should be 9" << "\n";
+
+    cout << apply2(4, 5, &multiply) << " should be 20" << "\n";
+    cout << apply2(4, 5, &multiply) << " should be 20" << "\n";
 
     cout << "\n";
 }
