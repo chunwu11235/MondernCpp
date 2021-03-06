@@ -12,7 +12,9 @@ void assignment1();
 
 int main(int, char**) {
     // assignment1();
-    use_function_ptr();
+    // use_function_ptr();
+
+    Dynamic_mem::smart_ptrs();
 }
 
 void assignment1() {

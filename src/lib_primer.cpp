@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include "lib_primer.h"
 
@@ -100,3 +101,61 @@ void use_function_ptr() {
 
     cout << "\n";
 }
+
+void create_ptrs(vector<int*> &ptrs) {
+    int *local_ptr1 = new int(0);
+    auto s_ptr = make_shared<int>(1);
+    auto u_ptr = make_unique<int>(2);
+    ptrs[0] = local_ptr1;
+    ptrs[1] = s_ptr.get();
+    ptrs[2] = u_ptr.get();
+}
+
+void create_ptrs2(vector<float*> &ptrs) {
+    // these ptrs are local variables
+    float *local_ptr1 = new float(0);
+    auto s_ptr = make_shared<float>(1);
+    auto u_ptr = make_unique<float>(2);
+    ptrs.push_back(local_ptr1);
+    ptrs.push_back(s_ptr.get());
+    ptrs.push_back(u_ptr.get());
+}
+
+void Dynamic_mem::smart_ptrs() {
+    
+    auto p1 = make_shared<int>(10); // creat a shared pointer 
+    int *p2 = p1.get();
+    *p2 = 100;
+
+    cout << p1.use_count() << '\n'; // 1 shared_ptr so far
+    auto p3{p1}; // p3 is another shared_ptr
+    cout << p1.use_count() << "\t" << p3.use_count() << "\n"; // 2 and 2
+    cout << p1.get() << "\t" << p2 << "\t" << p3.get() << "\n"; // addresses are the same
+
+
+    cout << "-----\n";
+    vector<int*> ptrs{nullptr, nullptr, nullptr};
+    cout << ptrs[0] << "\t" << ptrs[1] << "\t" << ptrs[2] << "\n";
+    create_ptrs(ptrs);
+    cout << ptrs[0] << "\t" << ptrs[1] << "\t" << ptrs[2] << "\n";
+
+    delete ptrs[0]; // OK
+    // smart pointers free the memory already!!!
+    // delete ptrs[1]; // error
+    // delete ptrs[2]; // error
+    
+    // cout << "-----\n";
+    // vector<float*> ptrs2;
+    // create_ptrs2(ptrs2);
+    // cout << ptrs2[0] << "\t" << ptrs2[1] << "\t" << ptrs2[2] << "\n";
+    // cout << *ptrs2[0] << "\t" << *ptrs2[1] << "\t" << *ptrs2[2] << "\n";
+    
+    // delete ptrs2[0];
+    // delete ptrs2[1]; // error
+    // // delete ptrs2[2];
+
+    cout << "\n";
+}
+
+
+
