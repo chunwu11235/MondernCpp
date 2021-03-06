@@ -7,7 +7,8 @@ void use_decltype();
 void use_function_ptr();
 
 namespace Dynamic_mem {
-    void smart_ptrs();
+    void ex_shared_ptrs();
+    void ex_unique_ptr();
 }
 
 

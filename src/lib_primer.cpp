@@ -102,16 +102,14 @@ void use_function_ptr() {
     cout << "\n";
 }
 
-void create_ptrs(vector<int*> &ptrs) {
+void create_shared_ptrs(vector<int*> &ptrs) {
     int *local_ptr1 = new int(0);
     auto s_ptr = make_shared<int>(1);
-    auto u_ptr = make_unique<int>(2);
     ptrs[0] = local_ptr1;
     ptrs[1] = s_ptr.get();
-    ptrs[2] = u_ptr.get();
 }
 
-void Dynamic_mem::smart_ptrs() {
+void Dynamic_mem::ex_shared_ptrs() {
     
     auto p1 = make_shared<int>(10); // creat a shared pointer 
     int *p2 = p1.get(); // really bad idea, don't mix smart pointers with built-in pointers!!!
@@ -121,11 +119,13 @@ void Dynamic_mem::smart_ptrs() {
     cout << p1.use_count() << "\t" << p3.use_count() << "\n"; // 2 and 2
     cout << p1.get() << "\t" << p2 << "\t" << p3.get() << "\n"; // addresses are the same
 
+    auto p4 = p1;
+    cout << p4.use_count() << "\t" << p1.use_count() << "\n"; // 3 3
 
     cout << "-----\n";
     vector<int*> ptrs{nullptr, nullptr, nullptr};
     cout << ptrs[0] << "\t" << ptrs[1] << "\t" << ptrs[2] << "\n";
-    create_ptrs(ptrs);
+    create_shared_ptrs(ptrs);
     cout << ptrs[0] << "\t" << ptrs[1] << "\t" << ptrs[2] << "\n";
 
     delete ptrs[0]; // OK
@@ -151,6 +151,25 @@ void Dynamic_mem::smart_ptrs() {
     << "\t" << *sp1 << "\t" << sp1.use_count() << "\n"; // 100 1 123 1
 
     cout << "\n";
+}
+
+void Dynamic_mem::ex_unique_ptr() {
+    
+    // doesn't support copy and assign
+    // initialize with built-in pointer
+    unique_ptr<int>  up1(new int(10));
+    cout << *up1 << "\n";
+    // auto up2 = up1; // error
+    // auto up2(up1); // error
+
+    auto ptr = up1.get();
+    cout << up1.get() << "\t" << ptr << "\n";
+
+    up1.reset(new int{100});
+    cout << up1.get() << "\t" << ptr << "\n";
+    // delete ptr; // error, this address is already freed by up1.reset
+    // Do Not mix built-in pointers with smart pointers.
+    ptr = nullptr;
 }
 
 
