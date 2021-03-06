@@ -111,21 +111,10 @@ void create_ptrs(vector<int*> &ptrs) {
     ptrs[2] = u_ptr.get();
 }
 
-void create_ptrs2(vector<float*> &ptrs) {
-    // these ptrs are local variables
-    float *local_ptr1 = new float(0);
-    auto s_ptr = make_shared<float>(1);
-    auto u_ptr = make_unique<float>(2);
-    ptrs.push_back(local_ptr1);
-    ptrs.push_back(s_ptr.get());
-    ptrs.push_back(u_ptr.get());
-}
-
 void Dynamic_mem::smart_ptrs() {
     
     auto p1 = make_shared<int>(10); // creat a shared pointer 
-    int *p2 = p1.get();
-    *p2 = 100;
+    int *p2 = p1.get(); // really bad idea, don't mix smart pointers with built-in pointers!!!
 
     cout << p1.use_count() << '\n'; // 1 shared_ptr so far
     auto p3{p1}; // p3 is another shared_ptr
@@ -140,22 +129,30 @@ void Dynamic_mem::smart_ptrs() {
     cout << ptrs[0] << "\t" << ptrs[1] << "\t" << ptrs[2] << "\n";
 
     delete ptrs[0]; // OK
+    ptrs[0] = nullptr;
     // smart pointers free the memory already!!!
     // delete ptrs[1]; // error
     // delete ptrs[2]; // error
     
-    // cout << "-----\n";
-    // vector<float*> ptrs2;
-    // create_ptrs2(ptrs2);
-    // cout << ptrs2[0] << "\t" << ptrs2[1] << "\t" << ptrs2[2] << "\n";
-    // cout << *ptrs2[0] << "\t" << *ptrs2[1] << "\t" << *ptrs2[2] << "\n";
+    // shared_ptr<int> sp1 = new int(3); // error, complier doesn't know how to convert a built-in pointer to a smart pointer
+    shared_ptr<int> sp1{new int{123}}; // OK
+
+    shared_ptr<int> sp2 = make_shared<int>(13);
+    // shared_ptr<int> sp3(sp2.get());
+    // cout << sp2.use_count() << "\t" << sp3.use_count() << "\n"; // both are 1
+    // sp2, sp3 are created separately, but they point to the same address.
+    // this is going to cause error. When the program ends, sp1.get() and sp2.get() are freed twice.
+
+    auto sp4{sp1};
+    cout << sp1.use_count() << "\t" << sp4.use_count() << "\n";
     
-    // delete ptrs2[0];
-    // delete ptrs2[1]; // error
-    // // delete ptrs2[2];
+    sp4.reset(new int(100));
+    cout << *sp4 << "\t" << sp4.use_count() 
+    << "\t" << *sp1 << "\t" << sp1.use_count() << "\n"; // 100 1 123 1
 
     cout << "\n";
 }
+
 
 
 
