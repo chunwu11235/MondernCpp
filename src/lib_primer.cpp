@@ -172,6 +172,25 @@ void Dynamic_mem::ex_unique_ptr() {
     ptr = nullptr;
 }
 
+void Dynamic_mem::ex_weak_ptr() {
+    auto sp1 = make_shared<int>(10);
+
+    weak_ptr<int> wp1(sp1);
+    weak_ptr<int> wp2 = sp1;
+
+    cout << sp1.use_count() << "\t" << wp1.use_count() << "\t" << wp2.use_count() << "\n"; // 1 1 1
+    
+    if(!wp2.expired()) {
+        auto local_sp = wp2.lock();
+        cout << sp1.use_count() << "\t" << wp2.use_count() << "\n"; // 2 2
+    }
+    // local_sp is cleaned
+    cout << sp1.use_count() << "\t" << wp2.use_count() << "\n"; // 1 1
+    // cout << *wp1 << "\n"; // cannot deref a weak_ptr!!
+    cout << (wp1.expired()? -1 : (*wp1.lock()) ) << "\n";
+}
+
+
 
 
 

@@ -15,7 +15,8 @@ int main(int, char**) {
     // use_function_ptr();
 
     // Dynamic_mem::ex_shared_ptrs();
-    Dynamic_mem::ex_unique_ptr();
+    // Dynamic_mem::ex_unique_ptr();
+    Dynamic_mem::ex_weak_ptr();
 }
 
 void assignment1() {
