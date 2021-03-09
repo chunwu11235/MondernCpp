@@ -6,15 +6,33 @@
 #include "lib_primer.h"
 #include "lib_101.h"
 
+#include "Car.h"
+
 using namespace std;
 
 void assignment1();
+void oop_basics();
 
 int main(int, char**) {
     // assignment1();
     // use_function_ptr();
 
-    Dynamic_mem::smart_ptrs();
+    // Dynamic_mem::ex_shared_ptrs();
+    // Dynamic_mem::ex_unique_ptr();
+    // Dynamic_mem::ex_weak_ptr();
+
+    oop_basics();
+
+}
+
+void oop_basics() {
+    Car car1;
+    car1.display_info();
+
+    cout << "----\n";
+    const Car car2(4, 10);
+    // car2.increase_seat(); // error can only use const method
+    car2.display_info();
 }
 
 void assignment1() {

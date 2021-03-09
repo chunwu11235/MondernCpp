@@ -1,6 +1,6 @@
 #pragma once
-#ifndef LIB_MEMOMRY_H
-#define MY_MEMOMRY_H
+#ifndef LIB_MEMORY_H
+#define MY_MEMORY_H
 
 
 void play_with_memory();
