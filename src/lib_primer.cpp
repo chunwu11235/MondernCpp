@@ -4,6 +4,8 @@
 
 #include "lib_primer.h"
 
+#include "Car.h"
+
 using namespace std;
 
 void use_auto() {
@@ -189,6 +191,8 @@ void Dynamic_mem::ex_weak_ptr() {
     // cout << *wp1 << "\n"; // cannot deref a weak_ptr!!
     cout << (wp1.expired()? -1 : (*wp1.lock()) ) << "\n";
 }
+
+
 
 
 

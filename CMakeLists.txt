@@ -27,10 +27,15 @@ set(lib_primer
 header/lib_primer.h
 src/lib_primer.cpp)
 
+set(Car
+header/Car.h
+src/Car.cpp)
+
 add_executable(ModernCpp 
 main.cpp
 ${lib_101}
 ${lib_primer}
+${Car}
 )
 
 add_executable(Playground 
