@@ -22,17 +22,37 @@ int main(int, char**) {
     // Dynamic_mem::ex_weak_ptr();
 
     oop_basics();
-
 }
 
 void oop_basics() {
+    cout << "---- car1\n";
     Car car1;
     car1.display_info();
 
-    cout << "----\n";
+    cout << "---- car 2\n";
     const Car car2(4, 10);
     // car2.increase_seat(); // error can only use const method
     car2.display_info();
+    cout << Car::get_total_car() << "\n"; // 2
+
+    cout << "---- car3\n";
+    auto car3 = make_shared<Car>(); // 3 cars
+    car3->display_info();
+    car3.reset(); // invoke Destructor, 2 cars
+    car3.reset(new Car(10,10));
+    cout << Car::get_total_car() << "\n"; // 3
+    
+    cout << "---- car4\n";
+    // copy constructor and deep copy
+    car1.set_ptr(5566);
+    auto ptr_car1 = car1.get_ptr();
+
+    Car car4(car1); // 4 cars
+    auto ptr_car4 = car4.get_ptr();
+
+    cout << ptr_car1 << "\t" << ptr_car4 << "\n"; // should not be the same
+    // if car4 is a shallow copy, then the ptr will be deleted twice and cause an error
+    cout << "-----end\n";
 }
 
 void assignment1() {
@@ -62,7 +82,7 @@ void assignment1() {
 
     // after deleting, we might still be able to access the object 
     // the behavior is undefined. The purpose of deleting is to tell
-    // the memory manager that these addresses are free to be re-allocat
+    // the memory manager that these addresses are free to be re-allocate
     delete a;
     delete b;
     a = nullptr;
