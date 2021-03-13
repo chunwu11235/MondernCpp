@@ -7,7 +7,6 @@ class MyClass {
     private:
         int value{0};
         int *ptr{nullptr}; // always initialize ptr
-
     public:
         MyClass();
         MyClass(int value, int *ptr);
@@ -19,6 +18,8 @@ class MyClass {
 
         const int * getPtr() const;
         int getValue() const;
+
+        void setPtr(int v);
 };
 
 // my implementation of smart_ptr

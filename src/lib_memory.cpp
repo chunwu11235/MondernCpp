@@ -19,6 +19,7 @@ MyClass::MyClass(const MyClass & that): value{that.value} {
 
 MyClass::MyClass(MyClass && that): value{that.value}, ptr{that.ptr} {
     std::cout << "MyClass(MyClass &&)\n";
+    std::cout << &that << "\n";
     // shallow copy, steal resource from "that"
     that.ptr = nullptr;
 }
@@ -35,7 +36,7 @@ MyClass MyClass::creat() {
 }
 
 const int* MyClass::getPtr() const{
-    std::cout << &(this->ptr) << "\n";
+    // std::cout << &(this->ptr) << "\n";
     return this->ptr;
 }
 
@@ -43,6 +44,13 @@ int MyClass::getValue() const {
     return this->value;
 }
 
+void MyClass::setPtr(int v) {
+    if(this->ptr == nullptr)
+        this->ptr = new int;
+    *(this->ptr) = v;
+}
+
+// global functions
 void func(const MyClass &myClass) {
     std::cout << "func(const MyClass &)\n";
 }
@@ -61,6 +69,7 @@ MyClass func2() {
 void play_with_resources() {
     std::cout << "----\n";
     MyClass c1;
+    c1.setPtr(123);
     std::cout << "----\n";
     MyClass c2(c1);
     std::cout << "----\n";
@@ -73,10 +82,15 @@ void play_with_resources() {
     std::cout << "----\n";
     func(c1);
     func(std::move(c1));
-
+    
     std::cout << "----\n";
-    auto c4 = func2();
-    std::cout << c4.getPtr() << "\n";
+    std::cout << &c2 << "\n";
+    auto c4 = MyClass(std::move(c2));
+    std::cout << (c2.getPtr() == nullptr) << "\n"; // c2's resources has been stolen
+    
+    std::cout << "----\n";
+    auto c5 = func2();
+    std::cout << c5.getPtr() << "\n";
 
     std::cout << "----end\n";
     // todo
