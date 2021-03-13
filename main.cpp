@@ -5,6 +5,7 @@
 
 #include "lib_primer.h"
 #include "lib_101.h"
+#include "lib_memory.h"
 
 #include "Car.h"
 
@@ -14,6 +15,9 @@ void assignment1();
 void oop_basics();
 
 int main(int, char**) {
+
+    play_with_resources();
+
     // assignment1();
     // use_function_ptr();
 
@@ -21,7 +25,7 @@ int main(int, char**) {
     // Dynamic_mem::ex_unique_ptr();
     // Dynamic_mem::ex_weak_ptr();
 
-    oop_basics();
+    // oop_basics();
 }
 
 void oop_basics() {
