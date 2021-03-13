@@ -35,6 +35,7 @@ add_executable(ModernCpp
 main.cpp
 ${lib_101}
 ${lib_primer}
+${lib_memory}
 ${Car}
 )
 

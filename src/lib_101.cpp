@@ -106,8 +106,8 @@ void play_with_pointers() {
     cout << &a << "\t" << n_ptr_ref << "\t" << n_ptr << 
     "\t" << *n_pptr << "\n";
     
-    cout << a << "\n"; // sould still be 5
-    *n_ptr_ref = 50; // a shold be 50
+    cout << a << "\n"; // should still be 5
+    *n_ptr_ref = 50; // a shhold be 50
     cout << a << "\t";
     **n_pptr = 101; // a should be 101
     cout << a << "\t";
@@ -144,14 +144,14 @@ void pass_function_arguments() {
         delete ptr_local_ref;
         ptr_local_ref = nullptr;
 
-        // we have changed the value of ptr_loca
+        // we have changed the value of ptr_local
         cout << "this has changed " << ptr_local << " address of the local ptr: " << &ptr_local
             << "\t" << *ptr_local << "\n";
 
     };
 
     local_function(ptr);       
-    // nothign has changed for ptr
+    // nothing has changed for ptr
     cout << ptr << "\t" << &ptr << "\t" << *ptr;
     cout <<"\n";
 

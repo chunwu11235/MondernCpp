@@ -8,16 +8,37 @@ using namespace std;
 int Car::total_car = 0;
 
 // default constructor with member initialization list
-Car::Car(): seat_capacity{4}, max_speed{200} {
+Car::Car() {
     cout << "Default Constructor\n";
     Car::total_car++;
 }
 
-Car::Car(int seat_capacity, int max_speed) {
+Car::Car(int seat_capacity, int max_speed): Car() {
     cout << "Parameterized Constructor\n";
-
     this->seat_capacity = seat_capacity;
     this->max_speed = max_speed;
+}
+
+Car::Car(const Car &other): Car(other.seat_capacity, other.max_speed) {
+    // deep copy
+    this -> ptr = new auto(*other.get_ptr());
+}
+
+Car::~Car() {
+    cout << "Destructor\n";
+    Car::total_car --;
+    cout << "total_car" << "\t" << total_car << "\n";
+
+    delete this->ptr;
+    this->ptr = nullptr;
+}
+
+void Car::set_ptr(int value) {
+    this -> ptr = new int(value);
+}
+
+int* Car::get_ptr() const {
+    return this -> ptr;
 }
 
 // const member function
