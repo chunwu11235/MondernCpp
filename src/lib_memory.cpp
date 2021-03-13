@@ -30,16 +30,32 @@ MyClass::~MyClass() {
 }
 
 MyClass MyClass::creat() {
-    MyClass temp = MyClass(10, new int{100});
-    return temp;
+    std::cout << "creat()\n";
+    return MyClass(0, new int{100});
 }
 
 const int* MyClass::getPtr() const{
+    std::cout << &(this->ptr) << "\n";
     return this->ptr;
 }
 
 int MyClass::getValue() const {
     return this->value;
+}
+
+void func(const MyClass &myClass) {
+    std::cout << "func(const MyClass &)\n";
+}
+
+void func(MyClass &&myClass) {
+    std::cout << "func(MyClass &&)\n";
+}
+
+MyClass func2() {
+    std::cout << "func2()\n";
+    MyClass temp(1, new int{2});
+    std::cout << temp.getPtr() << "\t" << "\n";
+    return temp;
 }
 
 void play_with_resources() {
@@ -49,8 +65,18 @@ void play_with_resources() {
     MyClass c2(c1);
     std::cout << "----\n";
     MyClass c3(MyClass::creat());
-    // std::cout << *c3 << "\n";
+    std::cout << *c3.getPtr() << "\n";
 
+    std::cout << "----\n";
+    func(MyClass::creat());
+
+    std::cout << "----\n";
+    func(c1);
+    func(std::move(c1));
+
+    std::cout << "----\n";
+    auto c4 = func2();
+    std::cout << c4.getPtr() << "\n";
 
     std::cout << "----end\n";
     // todo
