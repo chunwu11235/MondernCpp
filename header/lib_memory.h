@@ -9,7 +9,8 @@ class MyClass {
         int *ptr{nullptr}; // always initialize ptr
     public:
         MyClass();
-        MyClass(int value);
+        MyClass(int &value);
+        MyClass(int &&value);
         MyClass(int value, int *ptr);
         MyClass(const MyClass &other); // copy constructor
         MyClass(MyClass && other); // move constructor

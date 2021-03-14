@@ -5,8 +5,13 @@ MyClass::MyClass() {
     std::cout << "MyClass()\n";
 }
 
-MyClass::MyClass(int value): value{value} {
+MyClass::MyClass(int& value): value{value} {
     std::cout << "MyClass(int)\n";
+}
+
+// check the result with/without this one
+MyClass::MyClass(int&& value): value{value} {
+    std::cout << "MyClass(int &&)\n";
 }
 
 MyClass::MyClass(int value, int *ptr): value{value}, ptr{ptr} {
@@ -102,6 +107,7 @@ MyClass & MyClass::operator = (const MyClass & that) {
 MyClass & MyClass::operator = (MyClass && that) {
     std::cout << "operator = (MyClass &&)\n";
     this->value = that.value;
+    delete this->ptr;
     this->ptr = that.ptr;
     that.ptr = nullptr;
     return *this;
@@ -137,8 +143,19 @@ void play_with_operator_overloading() {
     MyClass c2(1);
     std::cout << "--- local +\n";
     std::cout << (c1+c2).getValue() << "\n"; // 20
+
+
+    std::cout << "--- global -\n";
     std::cout << (c1-c2).getValue() << "\n"; // 18
 
+
+    std::cout << "--- global -\n";
+    // pay attention to this one
+    // if we implement MyClass(int &&)
+    // this should invoke move constructor instead of a parameterized constructor
+    std::cout << (10-c2).getValue() << "\n"; // 9, from global overload
+
+    std::cout << "--- pre/post increment\n";
     // pre/post increment
     std::cout << (++c1).getValue() << "\t" << c1.getValue() << "\n"; // 20 20
     std::cout << (c1++).getValue() << "\t" << c1.getValue() << "\n"; // 20 21
