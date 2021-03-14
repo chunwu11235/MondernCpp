@@ -9,10 +9,19 @@ class MyClass {
         int *ptr{nullptr}; // always initialize ptr
     public:
         MyClass();
+        MyClass(int value);
         MyClass(int value, int *ptr);
         MyClass(const MyClass &other); // copy constructor
         MyClass(MyClass && other); // move constructor
         ~MyClass();
+
+        MyClass operator +(const MyClass & that ) const; // operator overloading
+        MyClass & operator ++(); // pre-increment
+        MyClass operator ++(int); // post-increment
+        bool operator == (const MyClass & that) const;
+
+        MyClass & operator = (const MyClass & that); // assign
+        MyClass & operator = (MyClass && that); // move
 
         static MyClass creat();
 
@@ -20,6 +29,7 @@ class MyClass {
         int getValue() const;
 
         void setPtr(int v);
+        void setValue(int v);
 };
 
 // my implementation of smart_ptr
@@ -31,6 +41,7 @@ class MyPtr {
 
 };
 
+void play_with_operator_overloading();
 
 void play_with_resources();
 
