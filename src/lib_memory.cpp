@@ -90,7 +90,7 @@ void play_with_resources() {
     std::cout << (c1.getPtr() == nullptr) << "\n"; // 1, c2's resources has been stolen
 
     std::cout << "---- l-value and r-value\n";
-    func(MyClass::creat());
+    func(MyClass::creat()); // can bind to "const MyClass &" if "MyClass &&" is not implemented 
     func(c1);
     
     
