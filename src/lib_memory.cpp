@@ -99,6 +99,14 @@ MyClass & MyClass::operator = (const MyClass & that) {
     return *this;
 }
 
+MyClass & MyClass::operator = (MyClass && that) {
+    std::cout << "operator = (MyClass &&)\n";
+    this->value = that.value;
+    this->ptr = that.ptr;
+    that.ptr = nullptr;
+    return *this;
+}
+
 // global functions
 void func(MyClass &myClass) {
     std::cout << "func(MyClass &)\n";
@@ -151,6 +159,10 @@ void play_with_operator_overloading() {
     std::cout << c1.getPtr() << "\n";
     std::cout << c4.getPtr() << "\n"; // deep copy
     std::cout << (c1 == c4) << "\n"; // true
+
+    std::cout << "--- move\n";
+    c4 = MyClass::creat();
+    std::cout << *(c4.getPtr()) << "\n"; // 100
 
     std::cout << "---end\n";
 
