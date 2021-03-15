@@ -38,9 +38,20 @@ class MyPtr {
     private:
         MyClass *my_class_ptr{nullptr};
     public:
-        // todo
+        MyPtr();
+        MyPtr(const MyClass & myClass);
+        MyPtr(MyClass && myClass);
+        MyPtr(const MyPtr & that); // copy
+        MyPtr(MyPtr && that); // move
+        ~MyPtr();
+        MyPtr & operator = (const MyPtr & that); // assign
+        MyPtr & operator = (MyPtr && that); // move
 
+        // todo de-reference
 };
+
+
+void play_with_smart_ptr(); // my implementation of smart_ptr
 
 void play_with_operator_overloading();
 

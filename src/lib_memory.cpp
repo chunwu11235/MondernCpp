@@ -136,6 +136,75 @@ MyClass func2() {
     return temp; 
 }
 
+// MyPtr
+MyPtr::MyPtr() {
+    std::cout << "MyPtr()\n";
+}
+
+MyPtr::MyPtr(const MyClass & myClass) {
+    std::cout << "MyPtr(const MyClass &)\n";
+    delete my_class_ptr;
+    my_class_ptr = new MyClass(myClass);
+}
+
+MyPtr::MyPtr(MyClass && myClass) {
+    std::cout << "MyPtr(MyClass &&)\n";
+    delete my_class_ptr;
+    if(my_class_ptr == nullptr) my_class_ptr = new MyClass;
+
+    // note that now myClass is a l-value, i.e. we can assign values to it
+    // myClass = MyClass::creat(); for example
+    // use std::move
+    *my_class_ptr = std::move(myClass); // should invoke move operator of MyClass
+}
+
+MyPtr::MyPtr(const MyPtr& that) {
+    std::cout << "MyPtr(const MyPtr &)\n";
+    delete this->my_class_ptr;
+    this->my_class_ptr = new MyClass(*(that.my_class_ptr)); // deep copy
+}
+
+MyPtr::MyPtr(MyPtr&& that) {
+    std::cout << "MyPtr(MyPtr &&)\n";
+    this->my_class_ptr = that.my_class_ptr;
+    that.my_class_ptr = nullptr; // shallow copy
+}
+
+MyPtr::~MyPtr() {
+    std::cout << "~MyPtr()\n";
+    delete my_class_ptr;
+    my_class_ptr = nullptr;
+}
+
+MyPtr & MyPtr::operator = (const MyPtr & that) {
+    std::cout << "operator = (const MyPtr &)\n";
+    delete my_class_ptr;
+    my_class_ptr = new MyClass(*(that.my_class_ptr));
+    return *this;
+}
+
+MyPtr & MyPtr::operator = (MyPtr && that) {
+    std::cout << "operator = (MyPtr &&)\n";
+    my_class_ptr = that.my_class_ptr;
+    that.my_class_ptr = nullptr;
+    return *this;
+}
+
+void play_with_smart_ptr() {
+    std::cout << "--- MyPtr\n";
+
+    MyClass c1(1, new int{201});
+
+    std::cout << "---\n";
+    MyPtr p1(c1); // invoke copy constructor of MyClass
+
+    std::cout << "---\n";
+    MyPtr p2(MyClass::creat()); // invoke move constructor of MyClass
+
+
+    std::cout << "--- end\n";
+}
+
 void play_with_operator_overloading() {
     std::cout << "---operator overloading\n";
 

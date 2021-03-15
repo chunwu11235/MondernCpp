@@ -16,7 +16,8 @@ void oop_basics();
 
 int main(int, char**) {
 
-    play_with_operator_overloading();
+    play_with_smart_ptr();
+    // play_with_operator_overloading();
     // play_with_resources();
 
     // assignment1();
