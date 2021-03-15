@@ -50,7 +50,8 @@ class MyPtr {
         MyPtr & operator = (const MyClass & myClass);
         MyPtr & operator = (MyClass && myClass);
 
-        MyClass & operator *();
+        MyClass & operator *() const;
+        MyClass * operator ->() const;
 };
 
 

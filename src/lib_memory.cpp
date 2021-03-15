@@ -203,8 +203,12 @@ MyPtr & MyPtr::operator = (MyClass && myClass) {
     return *this;
 }
 
-MyClass & MyPtr::operator* () {
+MyClass & MyPtr::operator* () const{
     return *my_class_ptr;
+}
+
+MyClass * MyPtr::operator->() const {
+    return my_class_ptr;
 }
 
 void play_with_smart_ptr() {
@@ -225,6 +229,7 @@ void play_with_smart_ptr() {
     std::cout << "---\n";
     p3 = c1;
     std::cout << (*p3).getValue() << "\n"; // 1559
+    std::cout << p3->getValue() << "\n"; // 1559
 
     std::cout << "--- end\n";
 }
