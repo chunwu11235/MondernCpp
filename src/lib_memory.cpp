@@ -190,10 +190,27 @@ MyPtr & MyPtr::operator = (MyPtr && that) {
     return *this;
 }
 
+MyPtr & MyPtr::operator = (const MyClass & myClass) {
+    std::cout << "MyPtr::operator = (const MyClass & myClass)\n";
+    delete my_class_ptr;
+    my_class_ptr = new MyClass(myClass); // deep copy
+    return *this;
+}
+
+MyPtr & MyPtr::operator = (MyClass && myClass) {
+    std::cout << "MyPtr::operator = (MyClass &&)\n";
+    MyPtr(std::move(myClass));
+    return *this;
+}
+
+MyClass & MyPtr::operator* () {
+    return *my_class_ptr;
+}
+
 void play_with_smart_ptr() {
     std::cout << "--- MyPtr\n";
 
-    MyClass c1(1, new int{201});
+    MyClass c1(1559, new int{201});
 
     std::cout << "---\n";
     MyPtr p1(c1); // invoke copy constructor of MyClass
@@ -201,6 +218,13 @@ void play_with_smart_ptr() {
     std::cout << "---\n";
     MyPtr p2(MyClass::creat()); // invoke move constructor of MyClass
 
+    std::cout << "---\n";
+    MyPtr p3;
+    p3 = MyClass::creat();
+
+    std::cout << "---\n";
+    p3 = c1;
+    std::cout << (*p3).getValue() << "\n"; // 1559
 
     std::cout << "--- end\n";
 }

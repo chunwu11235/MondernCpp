@@ -47,7 +47,10 @@ class MyPtr {
         MyPtr & operator = (const MyPtr & that); // assign
         MyPtr & operator = (MyPtr && that); // move
 
-        // todo de-reference
+        MyPtr & operator = (const MyClass & myClass);
+        MyPtr & operator = (MyClass && myClass);
+
+        MyClass & operator *();
 };
 
 
