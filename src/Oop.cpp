@@ -19,6 +19,10 @@ void Base::show() const{
     std::cout << n_private << "\t" << n_protected << "\n";
 }
 
+void Base::func() const{
+    std::cout << "Base::func()\n";
+}
+
 Derived::Derived() {
     std::cout << "Derived()\n";
 }
@@ -43,6 +47,10 @@ void Derived::show() const {
     std::cout << n_derived << "\n"; // cannot see n_private
 }
 
+void Derived::func() const{
+    std::cout << "Derived::func()\n";
+}
+
 void demo_oop() {
     std::cout << "--- oop\n";
 
@@ -56,6 +64,25 @@ void demo_oop() {
     std::cout << "---\n";
     Derived d3{1, 2, 3};
     d3.show();
+
+    std::cout << "--- virtual\n";
+    // runtime polymorphism can only be achieved by using pointers and references
+    Base* b1 = new Derived{};
+    b1->func(); // Derived::func()
+    delete b1; // ~Base()
+
+    std::cout << "--- virtual\n";
+    // we don't have runtime polymorphism with value types
+    Base b2;
+    b2 = Derived{1,2,3};
+    b2.show(); // Base::show()
+    b2.func(); // Base::func() !!!!
+
+    std::cout << "--- virtual\n";
+    const Base& b3 = Derived{2,3,4};
+    b3.show(); // Base::show()
+    b3.func(); // Derived::func() !!!!
+
 
     std::cout << "--- end\n";
 }

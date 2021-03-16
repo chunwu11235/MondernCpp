@@ -14,6 +14,7 @@ class Base{
         ~Base();
 
         void show() const;
+        virtual void func() const; // allow child to override, note: all member functions are virtual in java
 };
 
 class Derived: public Base{
@@ -27,6 +28,7 @@ class Derived: public Base{
         ~Derived();
 
         void show() const;
+        void func() const;
 };
 
 
