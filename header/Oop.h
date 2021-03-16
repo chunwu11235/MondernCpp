@@ -11,7 +11,7 @@ class Base{
         int n_public{};
         Base();
         Base(int n_private, int n_protected);
-        ~Base();
+        virtual ~Base(); // Base class should always has a virtual destructor
 
         void show() const;
         virtual void func() const; // allow child to override, note: all member functions are virtual in java
@@ -28,7 +28,7 @@ class Derived: public Base{
         ~Derived();
 
         void show() const;
-        void func() const;
+        void func() const override;
 };
 
 
