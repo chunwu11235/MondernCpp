@@ -31,12 +31,17 @@ set(Car
 header/Car.h
 src/Car.cpp)
 
+set(Oop
+header/Oop.h
+src/Oop.cpp)
+
 add_executable(ModernCpp 
 main.cpp
 ${lib_101}
 ${lib_primer}
 ${lib_memory}
 ${Car}
+${Oop}
 )
 
 add_executable(Playground 

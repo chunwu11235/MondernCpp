@@ -14,6 +14,7 @@ class MyClass {
         MyClass(int value, int *ptr);
         MyClass(const MyClass &other); // copy constructor
         MyClass(MyClass && other); // move constructor
+        MyClass(std::initializer_list<int> va_list);
         ~MyClass();
 
         MyClass operator +(const MyClass & that ) const; // operator overloading

@@ -32,6 +32,15 @@ MyClass::MyClass(MyClass && that): value{that.value}, ptr{that.ptr} {
     that.ptr = nullptr;
 }
 
+MyClass::MyClass(std::initializer_list<int> va_list) {
+    std::cout << "MyClass(std::initializer_list<int>)\n";
+    assert(va_list.size() == 2);
+    auto cur = va_list.begin();
+    value = *(cur++);
+    delete this->ptr;
+    ptr = new int{*(cur++)};
+}
+
 MyClass::~MyClass() {
     std::cout << "~MyClass()\n";
     delete ptr;
@@ -211,6 +220,8 @@ MyClass * MyPtr::operator->() const {
     return my_class_ptr;
 }
 
+
+
 void play_with_smart_ptr() {
     std::cout << "--- MyPtr\n";
 
@@ -230,6 +241,11 @@ void play_with_smart_ptr() {
     p3 = c1;
     std::cout << (*p3).getValue() << "\n"; // 1559
     std::cout << p3->getValue() << "\n"; // 1559
+
+    std::cout << "--- initializer_list\n";
+    MyClass c2{11,23};
+    std::cout << c2.getValue() << "\t" << *(c2.getPtr()) << "\n"; // 11 23
+
 
     std::cout << "--- end\n";
 }

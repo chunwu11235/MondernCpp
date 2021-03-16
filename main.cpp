@@ -8,6 +8,7 @@
 #include "lib_memory.h"
 
 #include "Car.h"
+#include "Oop.h"
 
 using namespace std;
 
@@ -16,7 +17,9 @@ void oop_basics();
 
 int main(int, char**) {
 
-    play_with_smart_ptr();
+    demo_oop();
+
+    // play_with_smart_ptr();
     // play_with_operator_overloading();
     // play_with_resources();
 
