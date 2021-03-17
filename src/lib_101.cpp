@@ -51,6 +51,23 @@ int my_add(int a, int b) {
     return a + b;
 }
 
+template<typename T>
+T Generic::add(T x, T y) {
+    return x + y;
+}
+
+void play_with_templates() {
+    using namespace Generic;
+    std::cout << "--- templates\n";
+    auto s1 = add(2.9, 3.3);
+    std::cout << s1 << "\t" << typeid(s1).name() << "\n";
+
+    auto s2 = add(1, 4); // type deduced at compile time
+    std::cout << s2 << "\t" << typeid(s2).name() << "\n";
+
+    std::cout << "--- end\n";
+}
+
 void play_with_pointers() {
     // uniform initialization'
     int a{10};

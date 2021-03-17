@@ -7,7 +7,9 @@
 
 int main(int, char**) {
 
-    play_with_overloading();
+
+    play_with_templates();
+    // play_with_overloading();
     // play_with_auto();
     // play_with_pointers();
     // play_with_reference();

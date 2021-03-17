@@ -20,6 +20,13 @@ namespace My_Function{
     void overload_ref(const int &ref);
 }
 
+namespace Generic{
+    template<typename T>
+    T add(T x, T y); 
+}
+
+
+void play_with_templates();
 
 void play_with_pointers();
 void play_with_reference();
