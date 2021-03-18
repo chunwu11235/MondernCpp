@@ -2,7 +2,15 @@
 # ifndef OOP_H
 # define OOP_H
 
-class Base{
+
+// abstract class has at least one pure virtual/abstract method
+// and cannot be instantiated
+class Abstract{
+    public:
+        virtual void show() const = 0; // pure virtual function (abstract method in Java), must be overriden by child classes
+};
+
+class Base: public Abstract{
     private:
         int n_private{};
     protected:
@@ -13,7 +21,7 @@ class Base{
         Base(int n_private, int n_protected);
         virtual ~Base(); // Base class should always has a virtual destructor
 
-        void show() const;
+        void show() const override;
         virtual void func() const; // allow child to override, note: all member functions are virtual in java
 };
 
@@ -27,7 +35,7 @@ class Derived: public Base{
         Derived(int n_derived, int n_private, int n_protected);
         ~Derived();
 
-        void show() const;
+        void show() const override;
         void func() const override;
 };
 
