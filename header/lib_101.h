@@ -3,6 +3,7 @@
 #define LIB_101_H
 
 #include <string>
+#include <vector>
 
 int my_add(int a, int b);
 
@@ -17,8 +18,10 @@ namespace Assignment {
 
     enum class Case{SENSITIVE, INSENSITIVE};
     size_t Find(const std::string &source, const std::string &search_string,
-    Case searchCase = Case::INSENSITIVE, size_t offset = 0);
-
+        Case searchCase = Case::INSENSITIVE, size_t offset = 0);
+    
+    std::vector<int> FindAll(const std::string & source, std::string & target,
+        Case searchCase = Case::INSENSITIVE, size_t offset = 0);
 }
 
 namespace My_Function{

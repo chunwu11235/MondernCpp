@@ -65,6 +65,28 @@ Case searchCase, size_t offset) {
     }
 }
 
+std::vector<int> Assignment::FindAll(const std::string & source, std::string &target,
+Case searchCase, size_t offset) {
+    std::vector<int> v;
+    std::string s;
+    std::string t;
+    if(searchCase == Case::INSENSITIVE) {
+        s = ToUpper(source);
+        t = ToUpper(target);
+    }else{
+        s = source;
+        t = target;
+    }
+
+    while(offset < s.length()) {
+        int i = s.find(t, offset);
+        if(i == std::string::npos) break;
+        v.push_back(i);
+        offset = i + 1;
+    }
+    return v;
+}
+
 int my_add(int a, int b) {
     return a + b;
 }
@@ -79,7 +101,16 @@ void assignment_sec8() {
     std::cout << "---\n";
     assert(Assignment::Find(s1, "world") == 6);
     assert(Assignment::Find(s1, "world", Assignment::Case::INSENSITIVE, 7) == std::string::npos);
-    
+
+    std::cout << "---\n";
+    std::string s = "Hello Hello World";
+    std::string t = "hello";
+    auto res = Assignment::FindAll(s, t);
+    for(auto & i : res) {
+        cout << i << ',';
+    }
+    std::cout << "\n";
+
 
     std::cout << "--- end\n";
 }
