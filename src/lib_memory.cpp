@@ -27,7 +27,7 @@ MyClass::MyClass(const MyClass & that): value{that.value} {
 
 MyClass::MyClass(MyClass && that): value{that.value}, ptr{that.ptr} {
     std::cout << "MyClass(MyClass &&)\n";
-    std::cout << &that << "\n";
+    // std::cout << &that << "\n";
     // shallow copy, steal resource from "that"
     that.ptr = nullptr;
 }
@@ -47,8 +47,8 @@ MyClass::~MyClass() {
     ptr = nullptr;
 }
 
-MyClass MyClass::creat() {
-    std::cout << "creat()\n";
+MyClass MyClass::create() {
+    std::cout << "create()\n";
     return MyClass(0, new int{100});
 }
 
@@ -162,7 +162,7 @@ MyPtr::MyPtr(MyClass && myClass) {
     if(my_class_ptr == nullptr) my_class_ptr = new MyClass;
 
     // note that now myClass is a l-value, i.e. we can assign values to it
-    // myClass = MyClass::creat(); for example
+    // myClass = MyClass::create(); for example
     // use std::move
     *my_class_ptr = std::move(myClass); // should invoke move operator of MyClass
 }
@@ -231,11 +231,11 @@ void play_with_smart_ptr() {
     MyPtr p1(c1); // invoke copy constructor of MyClass
 
     std::cout << "---\n";
-    MyPtr p2(MyClass::creat()); // invoke move constructor of MyClass
+    MyPtr p2(MyClass::create()); // invoke move constructor of MyClass
 
     std::cout << "---\n";
     MyPtr p3;
-    p3 = MyClass::creat();
+    p3 = MyClass::create();
 
     std::cout << "---\n";
     p3 = c1;
@@ -292,7 +292,7 @@ void play_with_operator_overloading() {
     std::cout << (c1 == c4) << "\n"; // true
 
     std::cout << "--- move\n";
-    c4 = MyClass::creat();
+    c4 = MyClass::create();
     std::cout << *(c4.getPtr()) << "\n"; // 100
 
     std::cout << "---end\n";
@@ -306,21 +306,21 @@ void play_with_resources() {
     std::cout << "----\n";
     MyClass c2(c1);
     std::cout << "----\n";
-    MyClass c3(MyClass::creat());
+    MyClass c3(MyClass::create());
     std::cout << *c3.getPtr() << "\n";
 
     std::cout << "----\n";
-    func(MyClass::creat());
+    func(MyClass::create());
 
     std::cout << "---- std::move\n";
     func(c1);
     func(std::move(c1));
     std::cout << (c1.getPtr() == nullptr) << "\n"; 
-    std::cout << *(c1.getPtr()) << "\n"; // 0, c1 still has the resource?
+    std::cout << *(c1.getPtr()) << "\n"; // 0, c1 still has the resource
 
 
     std::cout << "---- l-value and r-value\n";
-    func(MyClass::creat()); // can bind to "const MyClass &" if "MyClass &&" is not implemented 
+    func(MyClass::create()); // can bind to "const MyClass &" if "MyClass &&" is not implemented 
     func(c1);
 
     const MyClass &ref = c1;
@@ -335,6 +335,11 @@ void play_with_resources() {
     std::cout << "----\n";
     auto c5 = func2();
     std::cout << c5.getPtr() << "\n";
+
+    std::cout << "---- forwarding\n";
+
+    auto c6 = MyClass::create(c1);
+    auto c7 = MyClass::create(MyClass::create()); // perfect forwarding
 
     std::cout << "----end\n";
     // todo

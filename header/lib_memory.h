@@ -2,7 +2,6 @@
 #ifndef LIB_MEMORY_H
 #define MY_MEMORY_H
 
-
 class MyClass {
     private:
         int value{0};
@@ -25,7 +24,14 @@ class MyClass {
         MyClass & operator = (const MyClass & that); // assign
         MyClass & operator = (MyClass && that); // move
 
-        static MyClass creat();
+        static MyClass create(); // factory method
+
+        // demo of perfect forwarding
+        // remember to delcare and define templates in header files
+        template<typename T> static MyClass create(T && myClass) {
+            std::cout << "template<typename T> MyClass MyClass(T&&)\n";
+            return MyClass(std::forward<T>(myClass));
+        };
 
         const int * getPtr() const;
         int getValue() const;

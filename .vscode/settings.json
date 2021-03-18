@@ -4,6 +4,7 @@
         "new": "cpp",
         "memory": "cpp",
         "iosfwd": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "type_traits": "cpp"
     }
 }
