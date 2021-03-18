@@ -2,6 +2,8 @@
 #ifndef LIB_101_H
 #define LIB_101_H
 
+#include <string>
+
 int my_add(int a, int b);
 
 namespace Assignment {
@@ -9,6 +11,9 @@ namespace Assignment {
     void AddVal(const int *a, const int *b, int *result);
     void Swap(int *a, int *b);
     void Factorial(int *a, int *result);
+
+    std::string ToUpper(const std::string & str);
+    std::string ToLower(const std::string & str);
 }
 
 namespace My_Function{
@@ -21,10 +26,20 @@ namespace My_Function{
 }
 
 namespace Generic{
+    // function and class templates should be declared and defined in the header files
+    // will only be instantiated if certain templates are invoked
+    // ex, if add(1,2) was invoked, the compiler will instantiate add(int, int)
     template<typename T>
-    T add(T x, T y); 
+    T add(T x, T y) {
+        return x + y;
+    }
+
+    template<typename T, int size>
+    int max(T);
 }
 
+
+void assignment_sec8();
 
 void play_with_templates();
 

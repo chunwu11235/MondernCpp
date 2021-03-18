@@ -7,8 +7,9 @@
 
 int main(int, char**) {
 
+    assignment_sec8();
 
-    play_with_templates();
+    // play_with_templates();
     // play_with_overloading();
     // play_with_auto();
     // play_with_pointers();

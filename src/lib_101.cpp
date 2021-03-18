@@ -47,14 +47,25 @@ void Assignment::Factorial(int *a, int *result) {
 }
 
 
+std::string Assignment::ToUpper(const std::string & str) {
+    std::string temp{str};
+    for(auto& c : temp) {
+        c = toupper(c);
+    }
+    return temp;
+}
+
+
 int my_add(int a, int b) {
     return a + b;
 }
 
-template<typename T>
-T Generic::add(T x, T y) {
-    return x + y;
+void assignment_sec8() {
+    std::string s1 = "Hello World";
+    std::string s2 = Assignment::ToUpper(s1);
+    cout << s2 << "\n";
 }
+
 
 void play_with_templates() {
     using namespace Generic;
