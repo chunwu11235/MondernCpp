@@ -46,7 +46,6 @@ void Assignment::Factorial(int *a, int *result) {
     *result = ans;
 }
 
-
 std::string Assignment::ToUpper(const std::string & str) {
     std::string temp{str};
     for(auto& c : temp) {
@@ -55,15 +54,34 @@ std::string Assignment::ToUpper(const std::string & str) {
     return temp;
 }
 
+size_t Assignment::Find(const std::string & source, const std::string &search_string,
+Case searchCase, size_t offset) {
+    if(searchCase == Case::INSENSITIVE) {
+        std::string s = Assignment::ToUpper(source);
+        std::string t = Assignment::ToUpper(search_string);
+        return s.find(t, offset);
+    }else{
+        return source.find(source, offset);
+    }
+}
 
 int my_add(int a, int b) {
     return a + b;
 }
 
 void assignment_sec8() {
+    std::cout << "--- sec 8 assignment\n";
     std::string s1 = "Hello World";
     std::string s2 = Assignment::ToUpper(s1);
     cout << s2 << "\n";
+    cout << Assignment::ToUpper("this is another test case!") << "\n";
+
+    std::cout << "---\n";
+    assert(Assignment::Find(s1, "world") == 6);
+    assert(Assignment::Find(s1, "world", Assignment::Case::INSENSITIVE, 7) == std::string::npos);
+    
+
+    std::cout << "--- end\n";
 }
 
 

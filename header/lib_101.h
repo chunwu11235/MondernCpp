@@ -14,6 +14,11 @@ namespace Assignment {
 
     std::string ToUpper(const std::string & str);
     std::string ToLower(const std::string & str);
+
+    enum class Case{SENSITIVE, INSENSITIVE};
+    size_t Find(const std::string &source, const std::string &search_string,
+    Case searchCase = Case::INSENSITIVE, size_t offset = 0);
+
 }
 
 namespace My_Function{
