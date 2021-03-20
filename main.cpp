@@ -17,11 +17,13 @@ void oop_basics();
 
 int main(int, char**) {
 
+    Array::use_array();
+
     // demo_oop();
 
     // play_with_smart_ptr();
     // play_with_operator_overloading();
-    play_with_resources();
+    // play_with_resources();
 
     // assignment1();
     // use_function_ptr();

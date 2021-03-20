@@ -8,6 +8,40 @@
 
 using namespace std;
 
+void Array::use_array() {
+    std::cout << "--- Array\n";
+
+    int a1[] = {1,2,3};
+    int a2[]{11,2,3,5, 200};
+    int a[0]; // 1
+    
+    for(auto & i : a2) {
+        std::cout << i << "\n";
+    }
+
+    std::cout << "--- begin & end\n";
+    auto iter = std::begin(a2);
+    while(iter < std::end(a2)) {
+        std::cout << *iter << "\n";
+        ++iter;
+    }
+
+    std::cout << "---\n";
+
+    auto p2 = a2;
+    auto p3 = &a2[0];
+    std::cout << *p2 << "\n"; // 11, a2[0]
+    std::cout << "--- print\n";
+    Array::print<int, 5>(a2);
+    std::cout << "--- print\n";
+    Array::print<int, 5>(p3);
+
+
+    // Array::print<int>(a1);
+
+    std::cout << "--- end\n";
+}
+
 void use_auto() {
     // check "decltype" at the same time
 

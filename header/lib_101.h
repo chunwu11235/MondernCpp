@@ -43,7 +43,7 @@ namespace Generic{
     }
 
     template<typename T, int size>
-    int max(T);
+    int sum(T* arr);
 }
 
 

@@ -12,8 +12,22 @@ namespace Dynamic_mem {
     void ex_weak_ptr();
 }
 
+namespace Array {
+    void use_array();
+    template<typename T, size_t size>
+    void print(T* arr) {
+        for(size_t i = 0; i < size; ++i) {
+            std::cout << *(arr+i) << "\n";
+        }
+    }
 
+    // template<typename T>
+    // void print(T arr[]) {
+    //     for(auto & i : arr) {
+    //         std::cout << i << "\n";
+    //     }
+    // }
 
-
+}
 
 # endif
