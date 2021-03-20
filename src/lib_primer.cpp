@@ -6,6 +6,9 @@
 
 #include "Car.h"
 
+using PFN = const char* (*)(int);
+PFN pfn;
+
 using namespace std;
 
 void Array::use_array() {
@@ -37,7 +40,9 @@ void Array::use_array() {
     Array::print<int, 5>(p3);
 
 
-    // Array::print<int>(a1);
+    std::cout << "--- non-type template\n";
+    Array::print(&a2);
+    std::cout << Array::sum(a2) << "\n"; // 221, sum of a2
 
     std::cout << "--- end\n";
 }

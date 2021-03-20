@@ -17,16 +17,25 @@ namespace Array {
     template<typename T, size_t size>
     void print(T* arr) {
         for(size_t i = 0; i < size; ++i) {
-            std::cout << *(arr+i) << "\n";
+            std::cout << arr[i] << "\n";
         }
     }
 
-    // template<typename T>
-    // void print(T arr[]) {
-    //     for(auto & i : arr) {
-    //         std::cout << i << "\n";
-    //     }
-    // }
+    template<typename T, int size>
+    void print(T (*arr)[size]) {
+        for(auto & i : *arr) {
+            std::cout << i << "\n";
+        }
+    }
+
+    template<typename T, int size>
+    T sum(T (&arr)[size]) {
+        int s{};
+        for(auto &i : arr) {
+            s += i;
+        }
+        return s;
+    }
 
 }
 
