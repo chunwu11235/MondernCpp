@@ -61,6 +61,29 @@ class MyPtr {
         MyClass * operator ->() const;
 };
 
+template<typename T>
+class MySmartPtr {
+    private:
+        T * ptr{nullptr};
+    public:
+        MySmartPtr() {
+            std::cout << "MySmartPtr() of " << typeid(ptr).name() << "\n";
+        };
+        ~MySmartPtr() {
+            std::cout << "~MySmartPtr() of " << typeid(ptr).name() << "\n";
+            delete ptr;
+        };
+        void display() const {
+        };
+        void setPtr( T* ptr) {
+            this->ptr = ptr;
+        }
+        T* getPtr() const {
+            return ptr;
+        };
+};
+
+void play_with_MySmartPtr();
 
 void play_with_smart_ptr(); // my implementation of smart_ptr
 

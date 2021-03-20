@@ -6,9 +6,6 @@
 
 #include "Car.h"
 
-using PFN = const char* (*)(int);
-PFN pfn;
-
 using namespace std;
 
 void Array::use_array() {

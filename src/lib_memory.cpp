@@ -220,7 +220,10 @@ MyClass * MyPtr::operator->() const {
     return my_class_ptr;
 }
 
-
+void play_with_MySmartPtr() {
+    std::cout << "--- MySmartPtr Template\n";
+    std::cout << "--- end\n";
+}
 
 void play_with_smart_ptr() {
     std::cout << "--- MyPtr\n";

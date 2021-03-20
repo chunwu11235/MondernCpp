@@ -17,7 +17,9 @@ void oop_basics();
 
 int main(int, char**) {
 
-    Array::use_array();
+    play_with_MySmartPtr();
+
+    // Array::use_array();
 
     // demo_oop();
 
