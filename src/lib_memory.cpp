@@ -260,6 +260,8 @@ class MySmartPtr<char> {
         };
 };
 
+template<typename T>
+using Ptr = MySmartPtr<T>; // type alias
 void play_with_MySmartPtr() {
     std::cout << "--- MySmartPtr Template\n";
     MySmartPtr<int> p1{};
@@ -291,8 +293,7 @@ void play_with_MySmartPtr() {
     p5.display();
     
     std::cout << "---\n";
-    // auto s3 = new const char[24]{"Explicit Specialization"};
-    MySmartPtr<char> p6{"Explicit Specialization"};
+    Ptr<char> p6{"Explicit Specialization"};
     p6.display();
     std::cout << p6.getPtr() << "\n";
 
