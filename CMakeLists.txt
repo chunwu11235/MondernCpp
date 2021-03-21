@@ -35,6 +35,10 @@ set(Oop
 header/Oop.h
 src/Oop.cpp)
 
+set(lambda_expressions
+header/lambda_expressions.h
+src/lambda_expressions.cpp)
+
 add_executable(ModernCpp 
 main.cpp
 ${lib_101}
@@ -42,6 +46,7 @@ ${lib_primer}
 ${lib_memory}
 ${Car}
 ${Oop}
+${lambda_expressions}
 )
 
 add_executable(Playground 
