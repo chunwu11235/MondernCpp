@@ -27,6 +27,10 @@ class MyConsumer {
         void operator()(T t) {
             std::cout << t << "\n";
         }
+
+        static MyConsumer create() {
+            return MyConsumer{};
+        }
 };
 
 void demo_lambda() {
@@ -39,13 +43,24 @@ void demo_lambda() {
     ConsumerPtr<int> fptr1 = my_print; // function pointer
     ForEach(arr, fptr1);
 
-    // std::cout << "--- L\n";
-
     std::cout << "--- Lambda internal\n";
-    MyConsumer<int> consumer;
-    ForEach(arr, consumer);
+    ForEach(arr, MyConsumer<int>::create());
+
+    std::cout << "--- Lambda\n";
+    ForEach(arr, [](int i) {
+        std::cout << i << "\n";
+    });
 
 
+    std::cout << "--- Capture List\n";
+    // work with local variables in Lambda expressions
+    int sum{0};
+    // pass sum by reference, otherwise, it is passed by value
+    ForEach(arr, [&sum](int i){
+        sum += i;
+    });
+
+    std::cout << sum << "\n";
     std::cout << "--- end\n";
     
 }
