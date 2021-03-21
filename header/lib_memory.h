@@ -64,18 +64,35 @@ class MyPtr {
 template<typename T>
 class MySmartPtr {
     private:
-        T * ptr{nullptr};
+        T *ptr{nullptr};
     public:
         MySmartPtr() {
-            std::cout << "MySmartPtr() of " << typeid(ptr).name() << "\n";
+            std::cout << "MySmartPtr() of " << typeid(T).name() << "\n";
         };
+
+        MySmartPtr(const T & t) {
+            std::cout << "MySmartPtr(const T &) of " << typeid(T).name() << "\n";
+            ptr = new T{t};
+        }
+
+        MySmartPtr(T&& t) {
+            std::cout << "MySmartPtr(T&&) of " << typeid(T).name() << "\n";
+            ptr = new T{std::forward<T>(t)};
+        }
+
         ~MySmartPtr() {
-            std::cout << "~MySmartPtr() of " << typeid(ptr).name() << "\n";
+            std::cout << "~MySmartPtr() of " << typeid(T).name() << "\n";
             delete ptr;
         };
         void display() const {
+            if(ptr) {
+                std::cout << ptr << "\t" << *ptr << "\n";
+            }else{
+                std::cout << "nullptr" << "\n";
+            }
         };
         void setPtr( T* ptr) {
+            delete this->ptr;
             this->ptr = ptr;
         }
         T* getPtr() const {

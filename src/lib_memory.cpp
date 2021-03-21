@@ -1,5 +1,6 @@
 #include <iostream>
 #include "lib_memory.h"
+#include <typeinfo>
 
 MyClass::MyClass() {
     std::cout << "MyClass()\n";
@@ -220,8 +221,43 @@ MyClass * MyPtr::operator->() const {
     return my_class_ptr;
 }
 
+// explicit specialization should be in the .cpp file
+template<>
+MySmartPtr<const char *>::~MySmartPtr() {
+    std::cout << "MySmartPtr<const char *>::~MySmartPtr()\n";
+};
+
 void play_with_MySmartPtr() {
     std::cout << "--- MySmartPtr Template\n";
+    MySmartPtr<int> p1{};
+    p1.display();
+
+    MySmartPtr p2{100};
+    p2.display();
+
+    int num = 123;
+    MySmartPtr p3{123};
+    p3.display();
+
+    std::cout << "---\n";
+    auto s1 = "Hello World";
+
+    MySmartPtr p4{s1};
+    p4.display();
+    std::cout << p4.getPtr() << "\n";
+    std::cout << s1 << "\n";
+    // warning: the copy constructor does not do a deep copy
+    // need explicit specialization
+
+    std::cout << "---\n";
+    // this won't work unless we specialize the destructor
+    MySmartPtr<const char*> p5;
+    const char *s2 = "Hello Again";
+    std::cout << s2 << "\n";
+    p5.setPtr(&s2);
+    p5.display();
+    
+    std::cout << "---\n";
     std::cout << "--- end\n";
 }
 
