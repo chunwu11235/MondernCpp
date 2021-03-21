@@ -20,6 +20,15 @@ void my_print(T t) {
     std::cout << t << "\n";
 }
 
+// function object, make it callable
+template<typename T>
+class MyConsumer {
+    public:
+        void operator()(T t) {
+            std::cout << t << "\n";
+        }
+};
+
 void demo_lambda() {
     std::cout << "--- Lambda\n";
 
@@ -27,11 +36,16 @@ void demo_lambda() {
     Consumer<int> c1 = my_print;
     ForEach(arr, c1);
     std::cout << "---\n";
-    ConsumerPtr<int> fptr1 = my_print;
+    ConsumerPtr<int> fptr1 = my_print; // function pointer
     ForEach(arr, fptr1);
 
-    std::cout << "---\n";
-    
+    // std::cout << "--- L\n";
+
+    std::cout << "--- Lambda internal\n";
+    MyConsumer<int> consumer;
+    ForEach(arr, consumer);
+
+
     std::cout << "--- end\n";
     
 }
