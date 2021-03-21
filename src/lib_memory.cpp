@@ -227,6 +227,39 @@ MySmartPtr<const char *>::~MySmartPtr() {
     std::cout << "MySmartPtr<const char *>::~MySmartPtr()\n";
 };
 
+template<>
+class MySmartPtr<char> {
+    private:
+        const char *ptr{nullptr}; // just for demo, better use std::string in C++ 11
+    public:
+        MySmartPtr() {
+            std::cout << "MySmartPtr() of char\n";
+        };
+
+        MySmartPtr(const char *c) {
+            std::cout << "MySmartPtr(const char *) of char\n";
+            ptr = c;
+        }
+
+        ~MySmartPtr() {
+            std::cout << "~MySmartPtr() of char\n";
+        };
+        void display() const {
+            if(ptr) {
+                std::cout << ptr << "\n";
+            }else{
+                std::cout << "nullptr" << "\n";
+            }
+        };
+        void setPtr( const char* ptr) {
+            delete this->ptr;
+            this->ptr = ptr;
+        }
+        const char* getPtr() const {
+            return ptr;
+        };
+};
+
 void play_with_MySmartPtr() {
     std::cout << "--- MySmartPtr Template\n";
     MySmartPtr<int> p1{};
@@ -258,6 +291,11 @@ void play_with_MySmartPtr() {
     p5.display();
     
     std::cout << "---\n";
+    // auto s3 = new const char[24]{"Explicit Specialization"};
+    MySmartPtr<char> p6{"Explicit Specialization"};
+    p6.display();
+    std::cout << p6.getPtr() << "\n";
+
     std::cout << "--- end\n";
 }
 
