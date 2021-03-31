@@ -49,3 +49,14 @@ playground.cpp
 ${lib_101}
 ${lib_memory}
 )
+
+set(design_patterns
+header/design_patterns.h
+src/design_abstract_factory.cpp
+src/design_builder.cpp
+)
+
+add_executable(Design
+design_patterns.cpp
+${design_patterns}
+)
