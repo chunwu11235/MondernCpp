@@ -46,6 +46,7 @@ namespace Generic{
     int sum(T* arr);
 }
 
+void demo_nested_classes();
 
 void assignment_sec8();
 

@@ -7,7 +7,9 @@
 
 int main(int, char**) {
 
-    assignment_sec8();
+    demo_nested_classes();
+
+    // assignment_sec8();
 
     // play_with_templates();
     // play_with_overloading();

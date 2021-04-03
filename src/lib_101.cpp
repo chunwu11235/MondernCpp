@@ -115,6 +115,20 @@ void assignment_sec8() {
     std::cout << "--- end\n";
 }
 
+class Enclose{
+public:
+    struct Nested{};
+    static Nested getNested() {
+        return Nested{};
+    }
+};
+ 
+void demo_nested_classes()
+{
+    auto nested1 = Enclose::getNested();
+    auto nested2 = Enclose::Nested{};
+};
+
 
 void play_with_templates() {
     using namespace Generic;
