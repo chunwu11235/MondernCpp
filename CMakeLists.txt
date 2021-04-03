@@ -55,13 +55,15 @@ ${lib_101}
 ${lib_memory}
 )
 
+include_directories(design_patterns)
+
 set(design_patterns
-header/design_patterns.h
-src/design_abstract_factory.cpp
-src/design_builder.cpp
+design_patterns/design_patterns.h
+design_patterns/design_abstract_factory.cpp
+design_patterns/design_builder.cpp
 )
 
 add_executable(Design
-design_patterns.cpp
+design_patterns/main.cpp
 ${design_patterns}
 )
