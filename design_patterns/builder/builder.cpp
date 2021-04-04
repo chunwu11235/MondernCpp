@@ -40,6 +40,8 @@ public:
         House* house{nullptr};
     public:
         HouseBuilder(): house{new House{}} {}
+
+        // fluent builder
         HouseBuilder& withFloors(int floors) {
             house->setFloors(std::move(floors));
             return *this;
@@ -69,6 +71,16 @@ public:
     static HouseBuilder createBuilder() {
         return House::HouseBuilder{};
     };
+
+friend std::ostream& operator << (std::ostream& os, const House& house);
+};
+
+std::ostream& operator << (std::ostream& os, const House& house) {
+    return os 
+        << "House at " << house.address
+        << " has " << house.floors << " floors"
+        << " and worths " << house.price
+        << std::endl;
 };
 
 void demo_builder() {
@@ -79,9 +91,13 @@ void demo_builder() {
         .withFloors(19)
         .withPrice(15e5)
         .build();
+    
+    std::cout << house1;
 
     auto housePtr2 = House::createBuilder()
         .withAddress("123 Earth Street, Gotham City, DC 1812")
         .buildPtr();
+
+    std::cout << *housePtr2;
 
 }
