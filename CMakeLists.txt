@@ -55,15 +55,8 @@ ${lib_101}
 ${lib_memory}
 )
 
-include_directories(design_patterns)
+add_subdirectory(design_patterns)
+add_executable(Design main_design_patterns.cpp)
 
-set(design_patterns
-design_patterns/design_patterns.h
-design_patterns/design_abstract_factory.cpp
-design_patterns/design_builder.cpp
-)
-
-add_executable(Design
-design_patterns/main.cpp
-${design_patterns}
-)
+target_link_libraries(Design PUBLIC design_patterns)
+target_include_directories(Design PUBLIC design_patterns/)

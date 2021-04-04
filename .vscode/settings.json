@@ -6,5 +6,20 @@
         "iosfwd": "cpp",
         "string": "cpp",
         "type_traits": "cpp"
-    }
+    },
+    "cSpell.ignoreWords": [
+        "abstract",
+        "add",
+        "builder",
+        "cpp",
+        "design",
+        "directories",
+        "executable",
+        "factory",
+        "h",
+        "include",
+        "main",
+        "patterns",
+        "set"
+    ]
 }

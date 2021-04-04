@@ -1,4 +1,4 @@
-#include "design_patterns.h"
+#include "builder.h"
 #include <string>
 #include <iostream>
 
@@ -17,9 +17,3 @@ private:
 public:
     static HouseBuilder createBuilder();
 };
-
-
-void demo_builder() {
-    cout << "demo_builder" << endl;
-
-}
