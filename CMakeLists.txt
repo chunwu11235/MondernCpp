@@ -35,6 +35,10 @@ set(Oop
 header/Oop.h
 src/Oop.cpp)
 
+set(lambda_expressions
+header/lambda_expressions.h
+src/lambda_expressions.cpp)
+
 add_executable(ModernCpp 
 main.cpp
 ${lib_101}
@@ -42,6 +46,7 @@ ${lib_primer}
 ${lib_memory}
 ${Car}
 ${Oop}
+${lambda_expressions}
 )
 
 add_executable(Playground 
@@ -50,13 +55,8 @@ ${lib_101}
 ${lib_memory}
 )
 
-set(design_patterns
-header/design_patterns.h
-src/design_abstract_factory.cpp
-src/design_builder.cpp
-)
+add_subdirectory(design_patterns)
+add_executable(Design main_design_patterns.cpp)
 
-add_executable(Design
-design_patterns.cpp
-${design_patterns}
-)
+target_link_libraries(Design PUBLIC design_patterns)
+target_include_directories(Design PUBLIC design_patterns/)

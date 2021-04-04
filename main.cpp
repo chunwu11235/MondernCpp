@@ -9,6 +9,7 @@
 
 #include "Car.h"
 #include "Oop.h"
+#include "lambda_expressions.h"
 
 using namespace std;
 
@@ -17,10 +18,9 @@ void oop_basics();
 
 int main(int, char**) {
 
-    play_with_MySmartPtr();
-
+    demo_lambda();
+    // play_with_MySmartPtr();
     // Array::use_array();
-
     // demo_oop();
 
     // play_with_smart_ptr();

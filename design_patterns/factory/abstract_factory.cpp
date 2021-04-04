@@ -1,6 +1,5 @@
 #include <iostream>
 #include <memory>
-#include "design_patterns.h"
 using namespace std;
 
 // virtual class, i.e., interface
@@ -57,10 +56,3 @@ class Factory1 {
     }
 
 };
-
-void demo_abstract_factory() {
-    Factory1 factory{};
-    auto productA1 = factory.createProductA();
-    productA1->operate();
-
-}
