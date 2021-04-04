@@ -17,3 +17,7 @@ private:
 public:
     static HouseBuilder createBuilder();
 };
+
+void demo_builder() {
+    std::cout << "--- demo builder ---" << endl;
+}

@@ -2,8 +2,6 @@
 #ifndef DESIGN
 #define DESIGN
 
-
-void demo_abstract_factory();
-// void demo_builder();
+#include "builder.h"
 
 #endif

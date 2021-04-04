@@ -7,6 +7,6 @@ int main() {
     // demo_abstract_factory();
     // demo_builder();
     std::cout << "--- Design Patterns ---" << std::endl;
-    demo_abstract_factory();
+    demo_builder();
 
 }
