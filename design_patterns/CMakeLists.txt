@@ -3,3 +3,7 @@ add_library(design_patterns design_patterns.cpp)
 add_subdirectory(builder)
 target_link_libraries(design_patterns PUBLIC design_patterns_builder)
 target_include_directories(design_patterns PUBLIC builder/)
+
+add_subdirectory(factory)
+target_link_libraries(design_patterns PUBLIC design_patterns_factory)
+target_include_directories(design_patterns PUBLIC factory/)

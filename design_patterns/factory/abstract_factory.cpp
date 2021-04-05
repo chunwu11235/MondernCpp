@@ -1,3 +1,4 @@
+#include "factory.cpp"
 #include <iostream>
 #include <memory>
 using namespace std;
@@ -56,3 +57,7 @@ class Factory1 {
     }
 
 };
+
+void demo_abstract_factory() {
+    std::cout << "--- Abstract Factory ---\n"; 
+}
