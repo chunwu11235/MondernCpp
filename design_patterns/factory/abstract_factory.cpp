@@ -1,63 +1,78 @@
-#include "factory.cpp"
+#include "abstract_factory.h"
 #include <iostream>
 #include <memory>
+#include <vector>
 using namespace std;
 
-// virtual class, i.e., interface
-class AbstractProductA {
-    public:
-    AbstractProductA() {
-        cout << "AbstractProductA()\n";
+// interface
+class Component{
+private:
+    string material{};
+    double length{};
+    double width{};
+protected:
+    Component(string material, double length, double width): 
+    material{material}, length{length}, width{width} {};
+
+friend std::ostream& operator << (std::ostream& os, const Component c) {
+    return os << "material: " << c.material
+        << " length: " << c.length
+        << " width: " << c.width << std::endl; 
+};
+};
+
+
+struct Wall : public Component{    
+    Wall(string material, double length, double width):
+     Component(material, length, width) {};
+};
+
+struct Door : public Component{
+    Door(string material, double length, double width):
+     Component(material, length, width) {};
+};
+
+struct AbstractFactory {
+    virtual Wall createWall(double length, double width) const = 0; 
+    virtual Door createDoor(double length, double width) const = 0;
+};
+
+struct WoodFactory : AbstractFactory {
+    Wall createWall(double length, double width) const override {
+        return Wall("wood", length, width);
+    }; 
+    virtual Door createDoor(double length, double width) const override {
+        return Door("wood", length, width);
     };
-
-    virtual ~AbstractProductA() = 0;
-
-    virtual void operate() = 0;
 };
 
-//A pure virtual destructor must have a definition, 
-//since all base class destructors are always called when the derived class is destroyed
-AbstractProductA::~AbstractProductA() {
-    cout << "~AbstractProductA()\n";
-}
-
-class ProductA1 : public AbstractProductA {
-    public:
-    ~ProductA1() override {
-        cout << "~ProductA1()\n";
-    }
-    void operate() override {
-        cout << "ProductA1 is operating\n";
-    }
-};
-
-class AbstractProductB {
-    public:
-    virtual ~AbstractProductB() = 0;
+struct StoneFactory : AbstractFactory {
+    Wall createWall(double length, double width) const override {
+        return Wall("stone", length, width);
+    }; 
+    virtual Door createDoor(double length, double width) const override {
+        return Door("stone", length, width);
+    };
 };
 
 
-class AbstractFactory {
-    public:
-        // pure virtual methods, i.e. abstract methods
-        virtual shared_ptr<AbstractProductA> createProductA() const = 0;
-        virtual shared_ptr<AbstractProductB> createProductB() const = 0;
+struct Client {
+    void buildHouse(AbstractFactory&& factory ) {
+        auto door = factory.createDoor(5, 10);
+        auto wall = factory.createWall(10, 10);
+        cout << "building house with door " << door 
+        << " and wall "<< wall << endl;
+    };
 };
 
-
-// todo: make this singleton
-class Factory1 {
-    public:
-    shared_ptr<AbstractProductA> createProductA() const{
-        return make_shared<ProductA1>();
-    }
-
-    shared_ptr<AbstractProductB> createProductB() const{
-        return nullptr;
-    }
-
-};
 
 void demo_abstract_factory() {
     std::cout << "--- Abstract Factory ---\n"; 
+    Client client{};
+
+    std::cout << "--- Stone House ---\n";
+    client.buildHouse(StoneFactory{});
+
+    std::cout << "--- Wood House --- \n";
+    client.buildHouse(WoodFactory{});
 }

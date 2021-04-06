@@ -12,5 +12,8 @@ Play Around With Modern C++
    8. CMake
 2. Design Patterns
    1. Creational
+      1. Builder
+      2. Factory Methods
+      3. Abstract Factory
    2. Structural
    3. Behavioral
