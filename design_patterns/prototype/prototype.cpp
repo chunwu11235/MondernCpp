@@ -24,6 +24,7 @@ public:
     static Car model2;
 
     Car clone() const {
+        // can also be implemented using serialization and deserialization 
         return Car{value, maker, model, year};
     };
 
