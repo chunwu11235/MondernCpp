@@ -11,5 +11,6 @@ int main() {
     demo_abstract_factory();
     demo_factory();
     demo_prototype();
+    demo_adaptor();
 
 }

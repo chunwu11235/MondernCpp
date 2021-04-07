@@ -11,3 +11,7 @@ target_include_directories(design_patterns PUBLIC factory/)
 add_subdirectory(prototype)
 target_link_libraries(design_patterns PUBLIC design_patterns_prototype)
 target_include_directories(design_patterns PUBLIC prototype/)
+
+add_subdirectory(adaptor)
+target_link_libraries(design_patterns PUBLIC design_patterns_adaptor)
+target_include_directories(design_patterns PUBLIC adaptor/)

@@ -17,4 +17,5 @@ Play Around With Modern C++
       3. Abstract Factory
       4. Prototype
    2. Structural
+      1. Adaptor
    3. Behavioral
