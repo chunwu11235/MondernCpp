@@ -15,5 +15,6 @@ Play Around With Modern C++
       1. Builder
       2. Factory Methods
       3. Abstract Factory
+      4. Prototype
    2. Structural
    3. Behavioral

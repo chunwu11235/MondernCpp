@@ -5,5 +5,6 @@
 #include "builder.h"
 #include "factory.h"
 #include "abstract_factory.h"
+#include "prototype.h"
 
 #endif
