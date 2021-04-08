@@ -10,5 +10,8 @@ int main() {
     demo_builder();
     demo_abstract_factory();
     demo_factory();
+    demo_prototype();
+    demo_adaptor();
+    demo_composite();
 
 }
