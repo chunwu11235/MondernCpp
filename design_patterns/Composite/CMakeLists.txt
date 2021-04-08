@@ -1,0 +1,1 @@
+add_library(design_patterns_composite composite.cpp)

@@ -12,5 +12,6 @@ int main() {
     demo_factory();
     demo_prototype();
     demo_adaptor();
+    demo_composite();
 
 }

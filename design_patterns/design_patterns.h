@@ -7,5 +7,6 @@
 #include "abstract_factory.h"
 #include "prototype.h"
 #include "adaptor.h"
+#include "composite.h"
 
 #endif
