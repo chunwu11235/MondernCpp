@@ -10,5 +10,6 @@
 #include "composite.h"
 #include "dynamic_decorator.h"
 #include "static_decorator.h"
+#include "functional_decorator.h"
 
 #endif
