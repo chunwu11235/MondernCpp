@@ -19,3 +19,7 @@ target_include_directories(design_patterns PUBLIC adaptor/)
 add_subdirectory(composite)
 target_link_libraries(design_patterns PUBLIC design_patterns_composite)
 target_include_directories(design_patterns PUBLIC composite/)
+
+add_subdirectory(decorator)
+target_link_libraries(design_patterns PUBLIC design_patterns_decorator)
+target_include_directories(design_patterns PUBLIC decorator/)
