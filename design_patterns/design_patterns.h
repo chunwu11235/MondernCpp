@@ -9,5 +9,6 @@
 #include "adaptor.h"
 #include "composite.h"
 #include "dynamic_decorator.h"
+#include "static_decorator.h"
 
 #endif

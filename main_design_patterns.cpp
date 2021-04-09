@@ -14,5 +14,6 @@ int main() {
     demo_adaptor();
     demo_composite();
     demo_dynamic_decorator();
+    demo_static_decorator();
 
 }
