@@ -1,0 +1,5 @@
+add_library(design_patterns_decorator
+dynamic_decorator.cpp
+static_decorator.cpp
+functional_decorator.cpp
+)

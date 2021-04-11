@@ -18,4 +18,5 @@ Play Around With Modern C++
       4. Prototype
    2. Structural
       1. Adaptor
+      2. Decorator
    3. Behavioral
