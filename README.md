@@ -20,3 +20,4 @@ Play Around With Modern C++
       1. Adaptor
       2. Decorator
    3. Behavioral
+      1. Strategy

@@ -23,3 +23,7 @@ target_include_directories(design_patterns PUBLIC composite/)
 add_subdirectory(decorator)
 target_link_libraries(design_patterns PUBLIC design_patterns_decorator)
 target_include_directories(design_patterns PUBLIC decorator/)
+
+add_subdirectory(strategy)
+target_link_libraries(design_patterns PUBLIC design_patterns_strategy)
+target_include_directories(design_patterns PUBLIC strategy/)
