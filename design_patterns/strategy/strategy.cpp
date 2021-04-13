@@ -54,6 +54,19 @@ struct Undergrad{
     }
 };
 
+template<typename T>
+struct Kid{
+    const T& strategy;
+    Book& book;
+
+    Kid(Book& book, const T& strategy): book{book}, strategy{strategy} {};
+    void readingForFun() const {
+        cout << "A kid started to reading from page " << book.current_page << endl;
+        strategy.study(book);
+        cout << "and has read to page " << book.current_page << endl;
+    }
+};
+
 
 void demo_strategy() {
     std::cout << "--- demo strategy \n";
@@ -65,11 +78,12 @@ void demo_strategy() {
     Book Math101{300};
     Book CS101{500};
 
-    Undergrad Lisa{"Lisa", CS101, strategy1};
+    Undergrad Lisa{"Lisa", Math101, strategy1};
     Lisa.prepareForMidterm();
     Lisa.setStrategy(strategy2);
     Lisa.prepareForMidterm();
 
-    
+    Kid<StudyAtHome> Kyle{CS101, StudyAtHome{}};
+    Kyle.readingForFun();
 
 };
