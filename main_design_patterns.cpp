@@ -17,4 +17,5 @@ int main() {
     demo_static_decorator();
     demo_functional_decorator();
     demo_strategy();
+    demo_template_method();
 }

@@ -1,0 +1,3 @@
+add_library(design_patterns_template_method
+template_method.cpp
+)

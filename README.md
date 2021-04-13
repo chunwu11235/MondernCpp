@@ -21,3 +21,4 @@ Play Around With Modern C++
       2. Decorator
    3. Behavioral
       1. Strategy
+      2. Template Method
