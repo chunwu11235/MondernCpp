@@ -31,3 +31,7 @@ target_include_directories(design_patterns PUBLIC strategy/)
 add_subdirectory(template_method)
 target_link_libraries(design_patterns PUBLIC design_patterns_template_method)
 target_include_directories(design_patterns PUBLIC template_method/)
+
+add_subdirectory(singleton)
+target_link_libraries(design_patterns PUBLIC design_patterns_singleton)
+target_include_directories(design_patterns PUBLIC singleton/)
