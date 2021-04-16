@@ -1,6 +1,9 @@
 #include "singleton.hpp"
 #include <iostream>
 #include <memory>
+#include <thread>
+#include <mutex>
+#include <vector>
 
 using namespace std;
 // lazy initialization, NOT THREAD-SAFE 
@@ -18,7 +21,7 @@ private:
     Singleton_Lazy& operator= (const Singleton_Lazy& other) = delete; // no copy assignment
 
 public:
-    void printInstanceCount() const {
+    void printInstanceCount() const{
         cout << "instance count: " << Singleton_Lazy::count << "\n"; // should always be 1
     }
 
@@ -33,6 +36,24 @@ public:
 int Singleton_Lazy::count = 0;
 shared_ptr<Singleton_Lazy> Singleton_Lazy::_instance{nullptr};
 
+
+template<typename T>
+void run_threads(int n) {
+
+    vector<thread> threads;
+    for (int i = 0; i < n; ++i)
+    {
+        threads.emplace_back([i]()
+        {
+            cout << "creating thread " << i << endl;
+            auto s = T::getInstance();
+            s->printInstanceCount();
+        });
+    }
+
+    for_each(threads.begin(), threads.end(), [] (thread& t){ t.join(); });
+};
+
 void demo_singleton() {
     cout << "--- Demo Singleton\n";
 
@@ -41,4 +62,12 @@ void demo_singleton() {
 
     s1->printInstanceCount(); // 1
     s2->printInstanceCount(); // 1
+
+    // Singleton_Lazy s3; // not allowed
+    // auto s3 = *(s1.get()); // not allowed
+    // auto s3{*(s1.get())}; // not allowed
+
+    cout << "--- with multi-threading\n";
+    run_threads<Singleton_Lazy>(100);
+
 }
