@@ -11,5 +11,8 @@
 #include "dynamic_decorator.h"
 #include "static_decorator.h"
 #include "functional_decorator.h"
+#include "strategy.h"
+#include "template_method.h"
+#include "singleton.hpp"
 
 #endif

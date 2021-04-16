@@ -1,0 +1,2 @@
+add_library(design_patterns_singleton
+singleton.cpp)
