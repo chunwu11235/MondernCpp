@@ -4,6 +4,7 @@
 #include <thread>
 #include <mutex>
 #include <vector>
+#include <typeinfo>
 
 using namespace std;
 // lazy initialization, NOT THREAD-SAFE 
@@ -39,13 +40,14 @@ shared_ptr<Singleton_Lazy> Singleton_Lazy::_instance{nullptr};
 
 template<typename T>
 void run_threads(int n) {
+    cout << "--- test with multi-threading " << typeid(T).name() << endl;
 
     vector<thread> threads;
     for (int i = 0; i < n; ++i)
     {
         threads.emplace_back([i]()
         {
-            cout << "creating thread " << i << endl;
+            // cout << "creating thread " << i << endl;
             auto s = T::getInstance();
             s->printInstanceCount();
         });
@@ -57,17 +59,7 @@ void run_threads(int n) {
 void demo_singleton() {
     cout << "--- Demo Singleton\n";
 
-    auto s1 = Singleton_Lazy::getInstance();
-    auto s2 = Singleton_Lazy::getInstance();
-
-    s1->printInstanceCount(); // 1
-    s2->printInstanceCount(); // 1
-
-    // Singleton_Lazy s3; // not allowed
-    // auto s3 = *(s1.get()); // not allowed
-    // auto s3{*(s1.get())}; // not allowed
-
-    cout << "--- with multi-threading\n";
-    run_threads<Singleton_Lazy>(100);
+    // NOT THREAD-SAFE 
+    run_threads<Singleton_Lazy>(30);
 
 }
