@@ -35,7 +35,7 @@ private:
     }
     
 public:
-    static class HouseBuilder : public IBuilder<House> {
+    class HouseBuilder : public IBuilder<House> {
     private:
         House* house{nullptr};
     public:
