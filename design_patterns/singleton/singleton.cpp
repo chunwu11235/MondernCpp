@@ -20,7 +20,7 @@ private:
     Singleton_Lazy& operator= (const Singleton_Lazy& other) = delete; // no copy assignment
 
     Singleton_Lazy() {
-        cout << "Singleton_Lazy()---\n"; // should only be called onces
+        cout << "Singleton_Lazy()\n"; // should only be called onces
         ++Singleton_Lazy::count;   
         if(Singleton_Lazy::count > 1) {
             cout << "Multiple instances\n";
@@ -28,6 +28,10 @@ private:
     }
 
 public:
+    ~Singleton_Lazy() {
+        cout << "~Singleton_Lazy()\n";
+    }
+    
     void printInstanceCount() const{
         cout << typeid(*this).name() << " instance count: " << count << "\n"; // should always be 1
     }
@@ -57,7 +61,7 @@ private:
     Singleton_Lazy_With_Lock& operator= (const Singleton_Lazy_With_Lock& other) = delete; // no copy assignment
 
     Singleton_Lazy_With_Lock() {
-        cout << "Singleton_Lazy_With_Lock()---\n"; // should only be called onces
+        cout << "Singleton_Lazy_With_Lock()\n"; // should only be called onces
         ++Singleton_Lazy_With_Lock::count;
         if(Singleton_Lazy_With_Lock::count > 1) {
             cout << "Multiple instances\n";
@@ -65,6 +69,9 @@ private:
     }
 
 public:
+    ~Singleton_Lazy_With_Lock() {
+        cout << "~Singleton_Lazy_With_Lock()\n";
+    }
     void printInstanceCount() const{
         cout << typeid(*this).name() << " instance count: " << count << "\n"; // should always be 1
     }
@@ -86,6 +93,34 @@ shared_ptr<Singleton_Lazy_With_Lock> Singleton_Lazy_With_Lock::_instance;
 mutex Singleton_Lazy_With_Lock::mtx;
 
 
+// should use this one, thread safe
+struct Singleton {
+private:
+    static int count;
+    Singleton() {
+        cout << "Singleton()\n";
+        ++ Singleton::count;
+        if(Singleton::count > 1) {
+            cout << "Multiple instances!\n";
+        }
+    }
+
+    Singleton(const Singleton& other) = delete;
+    Singleton& operator= (const Singleton& other) = delete;
+
+public:
+    void printInstanceCount() const{
+        cout << typeid(*this).name() << " instance count: " << count << "\n"; // should always be 1
+    }
+    static Singleton* getInstance() {
+        static Singleton _instance;
+        return &_instance;
+    }    
+};
+
+int Singleton::count{0};
+
+
 template<typename T>
 void run_threads(int n) {
     cout << "--- test with multi-threading " << typeid(T).name() << endl;
@@ -95,12 +130,8 @@ void run_threads(int n) {
     {
         threads.emplace_back([i]()
         {
-            try {
-                auto s = T::getInstance();
-                s->printInstanceCount();
-            } catch( const runtime_error& err) {
-                cout << err.what() << endl;
-            }
+            auto&& s = T::getInstance();
+            s->printInstanceCount();
         });
     }
     for_each(threads.begin(), threads.end(), [] (thread& t){ t.join(); });
@@ -112,9 +143,14 @@ void demo_singleton() {
     // NOT THREAD-SAFE 
     run_threads<Singleton_Lazy>(10); // you will get at least 2 instance with high probability
     cin.get();
-    cout << "--- Double Checked Locking\n";
-    run_threads<Singleton_Lazy_With_Lock>(10);
 
+    cout << "--- Double Checked Locking\n";
+    run_threads<Singleton_Lazy_With_Lock>(10); // thread safe
+
+    cin.get();
+
+    cout << "-- Use Static Local Variable\n";
+    run_threads<Singleton>(10);
 
     cout << "--- Program End ---\n";
 }
