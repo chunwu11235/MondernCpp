@@ -11,6 +11,13 @@ set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
 
+set(Boost_INCLUDE_DIR /opt/homebrew/Cellar/boost/1.75.0_2/include)
+
+find_package(Boost)
+IF (Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIR})
+endif()
+
 include_directories(src)
 include_directories(header)
 
@@ -38,6 +45,10 @@ src/Oop.cpp)
 set(lambda_expressions
 header/lambda_expressions.h
 src/lambda_expressions.cpp)
+
+add_executable(boost101 
+main_boost101.cpp
+)
 
 add_executable(ModernCpp 
 main.cpp
