@@ -42,7 +42,7 @@ public:
     static Car model1;
     static Car model2;
 
-    // // clone with serialization
+    // clone with serialization
     // static Car clone(const Car& other) {
     //     ostringstream oss;
     //     archive::text_oarchive oa(oss);
