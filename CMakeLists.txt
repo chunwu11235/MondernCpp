@@ -11,7 +11,7 @@ set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
 
-set(Boost_INCLUDE_DIR /opt/homebrew/Cellar/boost/1.75.0_2/include)
+set(Boost_INCLUDE_DIR /Users/ming-chunwu/boost_1_76_0)
 
 find_package(Boost)
 IF (Boost_FOUND)

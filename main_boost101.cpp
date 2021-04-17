@@ -1,4 +1,5 @@
 #include <boost/lambda/lambda.hpp>
+#include <boost/serialization/serialization.hpp>
 #include <iostream>
 #include <iterator>
 #include <algorithm>
