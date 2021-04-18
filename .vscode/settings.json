@@ -6,7 +6,10 @@
         "iosfwd": "cpp",
         "string": "cpp",
         "type_traits": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "bitset": "cpp",
+        "ostream": "cpp",
+        "*.ipp": "cpp"
     },
     "cSpell.ignoreWords": [
         "abstract",
