@@ -39,3 +39,7 @@ target_include_directories(design_patterns PUBLIC singleton/)
 add_subdirectory(observer)
 target_link_libraries(design_patterns PUBLIC design_patterns_observer)
 target_include_directories(design_patterns PUBLIC observer/)
+
+add_subdirectory(mediator)
+target_link_libraries(design_patterns PUBLIC design_patterns_mediator)
+target_include_directories(design_patterns PUBLIC mediator/)

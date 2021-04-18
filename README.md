@@ -24,5 +24,7 @@ Play Around With Modern C++
    3. Behavioral
       1. Strategy
       2. Template Method
+      3. Observer
+      4. Mediator
 3. Boost
    1. Boost101

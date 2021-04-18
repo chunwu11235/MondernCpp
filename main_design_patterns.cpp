@@ -26,5 +26,6 @@ int main() {
     // demo_strategy();
     // demo_template_method();
     demo_observer();
+    demo_mediator();
 
 }
