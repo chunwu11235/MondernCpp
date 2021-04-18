@@ -35,3 +35,7 @@ target_include_directories(design_patterns PUBLIC template_method/)
 add_subdirectory(singleton)
 target_link_libraries(design_patterns PUBLIC design_patterns_singleton)
 target_include_directories(design_patterns PUBLIC singleton/)
+
+add_subdirectory(observer)
+target_link_libraries(design_patterns PUBLIC design_patterns_observer)
+target_include_directories(design_patterns PUBLIC observer/)

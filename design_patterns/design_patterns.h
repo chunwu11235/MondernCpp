@@ -14,5 +14,6 @@
 #include "strategy.h"
 #include "template_method.h"
 #include "singleton.hpp"
+#include "observer.hpp"
 
 #endif
