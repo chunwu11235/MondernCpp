@@ -20,6 +20,9 @@ Play Around With Modern C++
    2. Structural
       1. Adaptor
       2. Decorator
+      3. Composite
    3. Behavioral
       1. Strategy
       2. Template Method
+3. Boost
+   1. Boost101

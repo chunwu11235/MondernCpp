@@ -1,0 +1,3 @@
+add_library(design_patterns_observer
+observer.cpp
+)

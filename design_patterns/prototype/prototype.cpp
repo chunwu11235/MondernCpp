@@ -2,6 +2,9 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <sstream>
+#include <typeinfo>
+using namespace std;
 
 template<typename T>
 struct Prototype {
@@ -14,10 +17,11 @@ private:
     std::string maker{};
     std::string model{};
     int year{};
-
-    Car(double value, const std::string& maker, const std::string& model, int year): 
+    Car() {};
+    Car(double value, const std::string maker, const std::string model, int year): 
     value{value}, maker{maker}, model{model}, year{year} {};
     Car(const Car& other): Car{other.value, other.maker, other.model, other.year} {};
+
 public:
     // prototypes
     static Car model1;
@@ -37,15 +41,17 @@ public:
     };
 
     friend std::ostream& operator << (std::ostream& os, const Car& car) {
-        return os << "Car value: " << car.value << " maker: " << car.maker
+        return os << "Car value: " << car.value << " maker: " << (car.maker)
         << " model: " << car.model << " year: " << car.year << std::endl;
     }
+
 };
 
-Car Car::model1{10000, "Tesla", "ModelG", 1880}; 
-Car Car::model2{500000, "Pagani", "Zonda", 2010};
+std::string Tesla{"Tesla"};
+std::string Pagani{"Pagani"};
 
-
+Car Car::model1{10000, Tesla, "ModelG", 1880}; 
+Car Car::model2{500000, Pagani, "Zonda", 2010};
 
 void demo_prototype() {
     std::cout << "--- Demo Prototype ---\n";

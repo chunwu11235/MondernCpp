@@ -13,17 +13,18 @@ int main() {
     demo_abstract_factory();
     demo_factory();
     demo_prototype();
-    demo_singleton();
+    // demo_singleton(); // uncomment this to see the demo
 
-    // // structural
-    // demo_adaptor();
-    // demo_composite();
-    // demo_dynamic_decorator();
-    // demo_static_decorator();
-    // demo_functional_decorator();
+    // structural
+    demo_adaptor();
+    demo_composite();
+    demo_dynamic_decorator();
+    demo_static_decorator();
+    demo_functional_decorator();
 
-    // // behavioral
-    // demo_strategy();
-    // demo_template_method();
+    // behavioral
+    demo_strategy();
+    demo_template_method();
+    demo_observer();
 
 }
