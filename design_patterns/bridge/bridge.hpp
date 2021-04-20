@@ -37,6 +37,13 @@ struct Trading : IBusiness{
     void operate() override;
 };
 
+struct Ecommerce : IBusiness{
+    Ecommerce() {};
+    void hire() override;
+    void generate_revenue() override;
+    void operate() override;
+};
+
 // Bridge Pattern
 template<typename T>
 struct Company {

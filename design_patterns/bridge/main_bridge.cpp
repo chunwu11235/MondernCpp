@@ -7,5 +7,8 @@ void demo_bridge() {
     std::cout << "--- DEMO BRIDGE---\n";
     Company<Trading> hfc{};
     hfc.run();
+
+    Company<Ecommerce> afirm{};
+    afirm.expand();
     
 }
