@@ -21,10 +21,12 @@ Play Around With Modern C++
       1. Adaptor
       2. Decorator
       3. Composite
+      4. Bridge
    3. Behavioral
       1. Strategy
       2. Template Method
-      3. Observer
-      4. Chain of Responsibility
+      3. 
+      4. Observer
+      5. Chain of Responsibility
 3. Boost
    1. Boost101

@@ -17,5 +17,7 @@
 #include "observer.hpp"
 #include "mediator.hpp"
 #include "chain_of_responsibility.hpp"
+#include "bridge.hpp"
+
 
 #endif
