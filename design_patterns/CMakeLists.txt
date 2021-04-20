@@ -43,3 +43,7 @@ target_include_directories(design_patterns PUBLIC observer/)
 add_subdirectory(mediator)
 target_link_libraries(design_patterns PUBLIC design_patterns_mediator)
 target_include_directories(design_patterns PUBLIC mediator/)
+
+add_subdirectory(chain_of_responsibility)
+target_link_libraries(design_patterns PUBLIC design_patterns_chain)
+target_include_directories(design_patterns PUBLIC chain_of_responsibility/)

@@ -1,0 +1,2 @@
+add_library(design_patterns_chain
+chain_of_responsibility.cpp)

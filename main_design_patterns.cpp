@@ -27,5 +27,6 @@ int main() {
     // demo_template_method();
     demo_observer();
     demo_mediator();
+    demo_chain_of_responsibility();
 
 }

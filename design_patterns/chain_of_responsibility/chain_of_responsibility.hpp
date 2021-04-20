@@ -1,0 +1,5 @@
+#pragma once
+#ifndef DESIGN_PATTERNS_CHAIN_OF_RESPONSIBILITY
+#define DESIGN_PATTERNS_CHAIN_OF_RESPONSIBILITY
+void demo_chain_of_responsibility();
+#endif

@@ -16,5 +16,6 @@
 #include "singleton.hpp"
 #include "observer.hpp"
 #include "mediator.hpp"
+#include "chain_of_responsibility.hpp"
 
 #endif

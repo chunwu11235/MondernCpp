@@ -25,6 +25,6 @@ Play Around With Modern C++
       1. Strategy
       2. Template Method
       3. Observer
-      4. Mediator
+      4. Chain of Responsibility
 3. Boost
    1. Boost101
