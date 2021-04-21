@@ -1,9 +1,9 @@
 #include "command.hpp"
 #include <iostream>
 #include "string.h"
+#include <vector>
 
 using namespace std;
-
 struct Asset{
     const string asset_name;
     int quantity{};
@@ -34,8 +34,15 @@ struct Asset{
 struct Command {
     virtual void execute() = 0;
     virtual void undo() = 0;
+    Command() {
+        // cout << "Command()\n";
+    }
+    virtual ~Command() {
+        cout << "~Command\n";
+    };
 protected:
     bool isExecuted{false};
+    
 };
 
 struct Buy : Command {
@@ -120,6 +127,23 @@ public:
     }
 };
 
+struct Trader{
+private:
+    vector<unique_ptr<Command>> order_history{};
+public:    
+    void take_order(unique_ptr<Command>&& order) {
+        order->execute();
+        order_history.push_back(move(order));
+    }
+
+    void undo_trades() {
+        cout << "--- Undo Trading --- \n";
+        while(!order_history.empty()) {
+            order_history.back()->undo();
+            order_history.pop_back();
+        }
+    }
+};
 
 void demo_command() {
     cout << "--- DEMO COMMAND ---\n";
@@ -130,8 +154,24 @@ void demo_command() {
     DumpAll dumpAll(appl);
     dumpAll.execute();
     buy100.undo(); // failed
-    cout << "---\n";
     dumpAll.undo();
     buy100.undo();
     cout << appl.get_quantity() << endl; // 10
+
+
+    cout << "--- Trader Class ---\n";
+
+    Asset goog("GOOG", 300);
+    Trader trader{};
+    trader.take_order(make_unique<Buy>(goog, 101));
+    trader.take_order(make_unique<Buy>(goog, 21));
+    trader.take_order(make_unique<DumpAll>(goog));
+    trader.take_order(make_unique<Buy>(goog, 211));
+
+    trader.undo_trades();
+
+    cout << "--- Program End ---\n";
+    
+    
+
 }
