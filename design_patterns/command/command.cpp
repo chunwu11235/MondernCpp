@@ -48,8 +48,9 @@ public:
         isExecuted = asset.buy(quantity);
         if(!isExecuted) {
             cout << "Failed to execute\n";
+        }else{
+            cout << "Execution succeed\n";
         }
-        cout << "Execution succeed\n";
     }
 
     void undo() override {
@@ -57,8 +58,9 @@ public:
         bool success = asset.sell(quantity);
         if (!success) {
             cout << "Failed to undo" << endl;
+        }else{
+            cout << "Undo succeed\n";
         }
-        cout << "Undo succeed\n";
     }
 };
 
@@ -89,10 +91,47 @@ public:
     }
 };
 
+struct DumpAll : Command {
+private:
+    Asset& asset;
+    int quantity{};
+public:
+    DumpAll(Asset& asset): asset{asset} {};
+    void execute() override {
+        cout << "Dumping all position of " << asset.asset_name << endl;
+        int q_temp = asset.get_quantity();
+        isExecuted = asset.sell(q_temp);
+        if(!isExecuted) {
+            cout << "Failed to execute\n";
+        }else{
+            quantity = q_temp;
+            cout << "Execution succeed\n";
+        }
+    }
+
+    void undo() override {
+        if(!isExecuted) return;
+        bool success = asset.buy(quantity);
+        if (!success) {
+            cout << "Failed to undo" << endl;
+        }else{
+            cout << "Undo succeed\n";
+        }
+    }
+};
+
+
 void demo_command() {
     cout << "--- DEMO COMMAND ---\n";
 
     Asset appl("APPL", 10);
     Buy buy100(appl, 100);
     buy100.execute();
+    DumpAll dumpAll(appl);
+    dumpAll.execute();
+    buy100.undo(); // failed
+    cout << "---\n";
+    dumpAll.undo();
+    buy100.undo();
+    cout << appl.get_quantity() << endl; // 10
 }
