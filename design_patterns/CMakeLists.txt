@@ -51,3 +51,8 @@ target_include_directories(design_patterns PUBLIC chain_of_responsibility/)
 add_subdirectory(bridge)
 target_link_libraries(design_patterns PUBLIC design_patterns_bridge)
 target_include_directories(design_patterns PUBLIC bridge/)
+
+add_subdirectory(command)
+target_link_libraries(design_patterns PUBLIC design_patterns_command)
+target_include_directories(design_patterns PUBLIC command/)
+

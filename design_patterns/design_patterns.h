@@ -18,6 +18,7 @@
 #include "mediator.hpp"
 #include "chain_of_responsibility.hpp"
 #include "bridge.hpp"
+#include "command.hpp"
 
 
 #endif
