@@ -19,6 +19,7 @@
 #include "chain_of_responsibility.hpp"
 #include "bridge.hpp"
 #include "command.hpp"
+#include "proxy.hpp"
 
 
 #endif

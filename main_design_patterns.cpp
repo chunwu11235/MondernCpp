@@ -21,13 +21,15 @@ int main() {
     // demo_dynamic_decorator();
     // demo_static_decorator();
     // demo_functional_decorator();
-    demo_bridge();
+    // demo_bridge();
+    demo_proxy();
+
     // behavioral
     // demo_strategy();
     // demo_template_method();
-    demo_observer();
-    demo_mediator();
-    demo_chain_of_responsibility();
-    demo_command();
+    // demo_observer();
+    // demo_mediator();
+    // demo_chain_of_responsibility();
+    // demo_command();
 
 }
