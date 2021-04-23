@@ -30,5 +30,6 @@ Play Around With Modern C++
       3. Observer
       4. Mediator
       5. Chain of Responsibility
+      6. Memento
 3. Boost
    1. Boost101
