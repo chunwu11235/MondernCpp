@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 struct Position{
 private:    
     struct Memento{
@@ -113,8 +112,5 @@ void demo_memento() {
     ibm.redo(); // unable to redo
     cout << ibm << endl; // 160
 
-
     cout << "--- PROGRAM END ---\n";
-    
-
 }

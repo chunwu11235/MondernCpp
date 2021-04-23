@@ -23,7 +23,7 @@ int main() {
     // demo_functional_decorator();
     // demo_bridge();
     // demo_proxy();
-    demo_flyweight();
+    // demo_flyweight();
 
     // behavioral
     // demo_strategy();
@@ -32,6 +32,7 @@ int main() {
     // demo_mediator();
     // demo_chain_of_responsibility();
     // demo_command();
-    demo_memento();
+    // demo_memento();
+    demo_state();
 
 }

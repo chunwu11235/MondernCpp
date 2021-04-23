@@ -22,6 +22,7 @@
 #include "proxy.hpp"
 #include "flyweight.hpp"
 #include "memento.hpp"
+#include "state.hpp"
 
 
 #endif

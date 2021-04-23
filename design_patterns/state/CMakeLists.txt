@@ -1,0 +1,2 @@
+add_library(design_patterns_state
+state.cpp)
