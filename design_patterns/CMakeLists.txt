@@ -59,3 +59,7 @@ target_include_directories(design_patterns PUBLIC command/)
 add_subdirectory(proxy)
 target_link_libraries(design_patterns PUBLIC design_patterns_proxy)
 target_include_directories(design_patterns PUBLIC proxy/)
+
+add_subdirectory(flyweight)
+target_link_libraries(design_patterns PUBLIC design_patterns_flyweight)
+target_include_directories(design_patterns PUBLIC flyweight/)

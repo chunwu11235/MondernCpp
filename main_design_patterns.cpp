@@ -22,7 +22,8 @@ int main() {
     // demo_static_decorator();
     // demo_functional_decorator();
     // demo_bridge();
-    demo_proxy();
+    // demo_proxy();
+    demo_flyweight();
 
     // behavioral
     // demo_strategy();

@@ -23,6 +23,7 @@ Play Around With Modern C++
       3. Composite
       4. Bridge
       5. Proxy
+      6. Flyweight
    3. Behavioral
       1. Strategy
       2. Template Method

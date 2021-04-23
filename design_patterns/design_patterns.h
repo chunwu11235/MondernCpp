@@ -20,6 +20,7 @@
 #include "bridge.hpp"
 #include "command.hpp"
 #include "proxy.hpp"
+#include "flyweight.hpp"
 
 
 #endif
