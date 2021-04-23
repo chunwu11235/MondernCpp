@@ -2,6 +2,7 @@
 #include <iostream>
 #include "string.h"
 #include <memory>
+#include <vector>
 
 using namespace std;
 
@@ -16,9 +17,17 @@ private:
 
     string asset;
     int quantity;
+    vector<const shared_ptr<Memento>> snapshots{};
+    int current{-1};
+
+    void take_a_snapshot() {
+        snapshots.emplace_back(createMemento());
+        ++current;
+    }
+
 public:
     Position(const string asset, int quantity): asset{asset}, quantity{quantity} {
-
+        take_a_snapshot();
     }
     
     const shared_ptr<Memento> createMemento() {
@@ -34,11 +43,34 @@ public:
 
     void buy(int q) {
         quantity += q;
+        take_a_snapshot();
     }
 
     void sell(int q) {
         if (q <= quantity) {
             quantity -= q;
+            take_a_snapshot();
+
+        }else{
+            cout << "No enough quantity to sell\n";
+        }
+    }
+
+    void undo() {
+        if(current > 0) {
+            auto m = snapshots.at(--current);
+            restore(m);
+        }else{
+            cout << "Unable to undo\n";
+        }
+    }
+
+    void redo() {
+        if(current + 1 < snapshots.size()) {
+            auto m = snapshots.at(++current);
+            restore(m);
+        }else{
+            cout << "Unable to redo\n";
         }
     }
 
@@ -46,8 +78,6 @@ public:
         return os << p.asset << " " << p.quantity << endl;
     }
 };
-
-
 
 void demo_memento() {
     cout << "--- DEMO MEMENTO ---\n";    
@@ -57,8 +87,34 @@ void demo_memento() {
     aapl.buy(100);
     auto m2 = aapl.createMemento();
     cout << aapl << endl;
-
     aapl.restore(m1);
     cout << aapl << endl;
+
+    cout << "--- Undo/Redo --- \n";
+
+    Position ibm{"IBM", 0};
+    ibm.buy(20);
+    ibm.buy(40);
+    ibm.buy(100);
+    cout << ibm << endl; // 160
+
+    ibm.undo();
+    cout << ibm << endl; // 60
+
+    ibm.undo();
+    cout << ibm << endl; // 20
+
+    ibm.redo();
+    cout << ibm << endl; // 60
+
+    ibm.redo();
+    cout << ibm << endl; // 160
+
+    ibm.redo(); // unable to redo
+    cout << ibm << endl; // 160
+
+
+    cout << "--- PROGRAM END ---\n";
+    
 
 }
