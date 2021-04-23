@@ -47,6 +47,4 @@ void demo_flyweight() {
     FlyweightFactory::getFlyweight("Anna").operation("KGB");
     FlyweightFactory::getFlyweight("Eason").operation("CIA");
 
-
-
 }

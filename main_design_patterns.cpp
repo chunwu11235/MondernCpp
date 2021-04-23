@@ -32,5 +32,6 @@ int main() {
     // demo_mediator();
     // demo_chain_of_responsibility();
     // demo_command();
+    demo_memento();
 
 }

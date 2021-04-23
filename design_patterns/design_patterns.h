@@ -21,6 +21,7 @@
 #include "command.hpp"
 #include "proxy.hpp"
 #include "flyweight.hpp"
+#include "memento.hpp"
 
 
 #endif

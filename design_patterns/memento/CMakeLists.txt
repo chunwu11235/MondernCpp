@@ -1,0 +1,3 @@
+add_library(design_patterns_memento
+memento.cpp
+)
