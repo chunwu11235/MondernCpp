@@ -22,11 +22,13 @@ Play Around With Modern C++
       2. Decorator
       3. Composite
       4. Bridge
+      5. Proxy
+      6. Flyweight
    3. Behavioral
       1. Strategy
       2. Template Method
-      3. 
-      4. Observer
+      3. Observer
+      4. Mediator
       5. Chain of Responsibility
 3. Boost
    1. Boost101

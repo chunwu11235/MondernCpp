@@ -9,7 +9,8 @@
         "vector": "cpp",
         "bitset": "cpp",
         "ostream": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "ios": "cpp"
     },
     "cSpell.ignoreWords": [
         "abstract",
