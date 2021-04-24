@@ -14,11 +14,15 @@ void City::accept(Visitor* v) {
     v -> visit(this);
 }
 
-void Visitor::visit(Location* location) {
+void Visitor::_visit(Location* location) {
     cout << this->name << " is passing " << location->name << endl;
     if(location->next != nullptr) {
         location->next->accept(this);
     }
+}
+
+void Visitor::visit(Location* location) {
+    _visit(location);
 }
 
 void Hiker::visit(Mountain* location) {
@@ -52,9 +56,6 @@ void demo_visitor() {
     path1.accept(&hiker);
     cout << "---\n";
     path1.accept(&foodie);
-
-
-
 
 
     cout << "--- PROGRAM END --- \n";

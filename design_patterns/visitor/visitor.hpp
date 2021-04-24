@@ -41,19 +41,21 @@ struct Lake : Location {
 struct Visitor {
     string name;
     Visitor(const string& name): name{name} {};
+    void _visit(Location* location);
     virtual void visit(Location* location);
+    virtual void visit(City* location) {_visit(location);};
+    virtual void visit(Mountain* location) {_visit(location);};
 };
 
 struct Hiker : Visitor {
     Hiker(const string& name): Visitor{name} {};
-    virtual void visit(Mountain*);
+    void visit(Mountain*);
 }; 
 
 struct Foodie : Visitor {
     Foodie(const string& name): Visitor{name} {};
-    virtual void visit(City*);
+    void visit(City*);
 };
-
 
 void demo_visitor();
 
