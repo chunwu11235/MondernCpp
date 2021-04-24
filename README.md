@@ -32,5 +32,6 @@ Play Around With Modern C++
       5. Chain of Responsibility
       6. Memento
       7. State
+      8. Visitor
 3. Boost
    1. Boost101

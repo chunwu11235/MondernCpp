@@ -71,3 +71,7 @@ target_include_directories(design_patterns PUBLIC memento/)
 add_subdirectory(state)
 target_link_libraries(design_patterns PUBLIC design_patterns_state)
 target_include_directories(design_patterns PUBLIC state/)
+
+add_subdirectory(visitor)
+target_link_libraries(design_patterns PUBLIC design_patterns_visitor)
+target_include_directories(design_patterns PUBLIC visitor/)

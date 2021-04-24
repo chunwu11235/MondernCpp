@@ -23,6 +23,7 @@
 #include "flyweight.hpp"
 #include "memento.hpp"
 #include "state.hpp"
+#include "visitor.hpp"
 
 
 #endif

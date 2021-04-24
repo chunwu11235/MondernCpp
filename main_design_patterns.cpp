@@ -33,6 +33,7 @@ int main() {
     // demo_chain_of_responsibility();
     // demo_command();
     // demo_memento();
-    demo_state();
+    // demo_state();
+    demo_visitor();
 
 }
