@@ -10,7 +10,8 @@
         "bitset": "cpp",
         "ostream": "cpp",
         "*.ipp": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "filesystem": "cpp"
     },
     "cSpell.ignoreWords": [
         "abstract",
