@@ -1,6 +1,8 @@
 # ModernCpp
 
-Play Around With Modern C++
+Play Around With Modern C++:
+Gang of 4; C++ Primer, etc.
+
 1. Core language features of C++ 11/14/17
    1. Built-in types
    2. OOP
